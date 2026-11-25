@@ -105,7 +105,7 @@
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 40px;}
   @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.grid{grid-template-columns:1fr;}}
-  .card{cursor:pointer;animation:fadeUp .55s ease both;}
+  .card{cursor:pointer;animation:fadeUp .55s ease both;min-width:0;}
   @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
   .card.hidden{display:none;}
   .card .sticker{padding:8px 8px 12px;transition:transform .35s;}
@@ -117,6 +117,14 @@
   .card-cap .t{font-weight:600;font-size:13.5px;}
   .card-cap .y{font-family:var(--pixel);font-size:12px;color:var(--pink);white-space:nowrap;}
   .card-en{padding:2px 4px 0;font-size:10.5px;color:#8a857d;letter-spacing:.16em;text-transform:uppercase;}
+  .kvrow{display:flex;gap:5px;aspect-ratio:16/10;border-radius:9px;overflow:hidden;width:100%;}
+  .kvrow img{flex:1 1 0;width:0;min-width:0;height:100%;object-fit:cover;border-radius:0;transition:flex .5s cubic-bezier(.6,0,.3,1);}
+  .kvrow img.on{flex:2.6;}
+  .kv-hint{padding:6px 4px 0;font-size:10.5px;color:var(--pink);font-family:var(--pixel);}
+  .kv-more{position:absolute;top:14px;right:14px;z-index:2;background:#fff;border:1.5px solid #171313;border-radius:999px;
+    padding:4px 12px;font-family:var(--pixel);font-size:11px;cursor:pointer;box-shadow:0 2px 8px rgba(23,21,19,.15);transition:transform .2s;}
+  .kv-more:hover{transform:scale(1.08);}
+  .card{position:relative;}
 
   /* ---------- lightbox ---------- */
   .lightbox{position:fixed;inset:0;z-index:200;display:none;background:rgba(246,241,232,.96);backdrop-filter:blur(8px);}
@@ -292,10 +300,11 @@ const works = [
     imgs:["assets/forest-final.jpg","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
   },
   {
-    title:"西南大悦城 · 年度视觉提案（已中标）", en:"JOY CITY · PARK", cat:"kv", cover:"assets/swjoy-wide.jpg",
-    desc:"大悦城西南商业（成都/重庆/武汉）年度视觉提案并成功中标：主题「PARK 在公园里 自在漫游」——把城市青年的松弛感搬进公园，真人摄影 × 手写笔刷字体 × 3D 蘑菇装置，延展上新季册页、高德地图联名海报、道旗与户外海报系统。",
-    tags:["年度视觉","提案中标","延展系统"], year:"2026 · 成都/重庆/武汉",
-    imgs:["assets/swjoy-main.jpg","assets/swjoy-new.jpg","assets/swjoy-amap.jpg","assets/swjoy-flag.jpg","assets/swjoy-poster.jpg"]
+    title:"西南大悦城 · 年度视觉提案（已中标）", en:"JOY CITY · JOY IN LIVE", cat:"kv", cover:"assets/swjoy-kv1.jpg",
+    kvset:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg"],
+    desc:"大悦城西南商业（成都/重庆/武汉）年度视觉提案并成功中标：以「JOY IN LIVE 生动即生活」为总纲，四款人群主视觉并排成阵——PARK 在公园里自在漫游、PET 在奔跑中活出宠趣、SPORT 在律动中活出生动、KIDS 在陪伴里悦享时光；真人摄影 × 手写笔刷字体 × 3D 蘑菇装置，延展上新季册页、高德地图联名海报、道旗与户外海报系统。",
+    tags:["年度视觉","提案中标","人群主视觉","延展系统"], year:"2026 · 成都/重庆/武汉",
+    imgs:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg","assets/swjoy-main.jpg","assets/swjoy-new.jpg","assets/swjoy-amap.jpg","assets/swjoy-flag.jpg","assets/swjoy-poster.jpg"]
   },
   {
     title:"高新花园城 · 年度视觉「近享自在」", en:"ENJOYMENT", cat:"kv", cover:"assets/gxn-white.jpg",
@@ -430,11 +439,29 @@ const grid = document.getElementById("grid");
 works.forEach((w,i)=>{
   const el = document.createElement("article");
   el.className = "card"; el.dataset.cat = w.cat;
-  el.innerHTML = `
-    <div class="sticker"><img src="${w.cover}" alt="${w.title}" loading="lazy"></div>
-    <div class="card-cap"><span class="t">${w.title}</span><span class="y pixel">${w.year}</span></div>
-    <div class="card-en">${w.en}</div>`;
-  el.addEventListener("click",()=>openLb(i));
+  if(w.kvset){
+    el.innerHTML = `
+      <div class="sticker"><div class="kvrow">${w.kvset.map(s=>`<img src="${s}" alt="${w.title}" loading="lazy">`).join("")}</div></div>
+      <button class="kv-more" aria-label="查看全部">延展 ↗</button>
+      <div class="card-cap"><span class="t">${w.title}</span><span class="y pixel">${w.year}</span></div>
+      <div class="kv-hint">点击海报切换主打 · ${w.kvset.length} 款主视觉</div>
+      <div class="card-en">${w.en}</div>`;
+    let kvi = 0;
+    const row = el.querySelector(".kvrow");
+    row.addEventListener("click",e=>{
+      e.stopPropagation();
+      kvi = (kvi+1) % w.kvset.length;
+      row.querySelectorAll("img").forEach((im,k)=>im.classList.toggle("on",k===kvi));
+    });
+    row.querySelector("img").classList.add("on");
+    el.querySelector(".kv-more").addEventListener("click",e=>{e.stopPropagation();openLb(i);});
+  }else{
+    el.innerHTML = `
+      <div class="sticker"><img src="${w.cover}" alt="${w.title}" loading="lazy"></div>
+      <div class="card-cap"><span class="t">${w.title}</span><span class="y pixel">${w.year}</span></div>
+      <div class="card-en">${w.en}</div>`;
+    el.addEventListener("click",()=>openLb(i));
+  }
   grid.appendChild(el);
 });
 
