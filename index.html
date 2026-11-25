@@ -5,298 +5,252 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>芮鹅 RAY CHOU — 平面设计作品集</title>
 <meta name="description" content="周芮（Ray Chou / 芮鹅）平面设计师作品集 — 主视觉、活动物料、插画与排版设计">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#111111;
-    --red:#e03616;
-    --gray:#8a8a8a;
-    --line:#d9d9d9;
-    --bg:#ffffff;
+    --cream:#f6f1e8;
+    --ink:#171513;
+    --pink:#ff4d8d;
+    --paper:#ffffff;
+    --shadow:0 10px 30px rgba(23,21,19,.14);
     --sans:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --pixel:"Pixelify Sans",var(--sans);
+    --hand:"Caveat","Zhi Mang Xing",cursive;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.65;-webkit-font-smoothing:antialiased;}
-  ::selection{background:var(--red);color:#fff;}
+  body{background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--pink);color:#fff;}
   a{color:inherit;text-decoration:none;}
-  .up{text-transform:uppercase;letter-spacing:.06em;}
+  img{display:block;}
+  .up{text-transform:uppercase;letter-spacing:.14em;}
+  .pixel{font-family:var(--pixel);letter-spacing:.02em;}
 
-  /* ---------- header ---------- */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);
-    border-bottom:1px solid var(--ink);
-    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
-    padding:14px 28px 12px;
-    font-size:13px;font-weight:500;
-  }
-  header .col{display:flex;flex-direction:column;gap:2px;}
-  header .brand:hover{color:var(--red);}
-  header .c4{align-items:flex-end;text-align:right;color:var(--red);}
-  header nav{margin-top:6px;display:flex;flex-direction:column;gap:0;}
-  header nav a{width:fit-content;padding:0;position:relative;}
-  header nav a::after{content:"";position:absolute;left:0;bottom:1px;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
-  header nav a:hover::after,header nav a.on::after{transform:scaleX(1);}
-  @media(max-width:760px){
-    header{grid-template-columns:1fr 1fr;padding:12px 16px;}
-    header .c3,header .c4{display:none;}
+  /* ---------- 贴纸 ---------- */
+  .sticker{
+    background:var(--paper);border-radius:14px;box-shadow:var(--shadow);
+    overflow:hidden;
   }
 
-  main{padding-top:130px;}
+  /* ---------- nav ---------- */
+  nav.top{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 32px;
+    background:linear-gradient(var(--cream) 65%,transparent);
+  }
+  nav.top .logo{font-family:var(--pixel);font-size:17px;font-weight:600;}
+  nav.top .logo em{font-style:normal;color:var(--pink);}
+  nav.top .links{display:flex;gap:26px;font-size:11.5px;font-weight:600;}
+  nav.top .links a{position:relative;padding-bottom:2px;}
+  nav.top .links a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--pink);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+  nav.top .links a:hover::after,nav.top .links a.on::after{transform:scaleX(1);}
+  @media(max-width:640px){nav.top{padding:14px 18px;}nav.top .links{gap:14px;font-size:11px;}}
 
   /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;}
-  .hero-intro{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:10px 28px 40px;
-    font-size:13px;
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 20px 60px;position:relative;overflow:hidden;}
+  .sticker-row{display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+  .sticker-row .sticker{width:clamp(90px,14vw,190px);flex:none;padding:7px 7px 9px;transition:transform .35s;}
+  .sticker-row .sticker img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;}
+  .sticker-row .s1{transform:rotate(-7deg) translateY(14px);z-index:1;}
+  .sticker-row .s2{transform:rotate(4deg) translateY(-6px);z-index:2;margin-left:-10px;}
+  .sticker-row .s3{transform:rotate(-2deg);z-index:3;margin-left:-8px;}
+  .sticker-row .s4{transform:rotate(6deg) translateY(10px);z-index:2;margin-left:-8px;}
+  .sticker-row .s5{transform:rotate(-5deg) translateY(-4px);z-index:1;margin-left:-10px;}
+  .sticker-row .sticker:hover{transform:rotate(0) translateY(-10px) scale(1.06);z-index:9;}
+  .hero h1{
+    font-family:var(--pixel);font-weight:600;
+    font-size:clamp(56px,11vw,150px);line-height:1;letter-spacing:.01em;
+    margin-top:18px;
   }
-  .hero-intro .intro-name{font-weight:500;}
-  .hero-intro .intro-text{grid-column:3/5;}
-  .hero-intro .intro-red{color:var(--red);margin-top:14px;}
-  .hero-intro .intro-contact{margin-top:6px;}
-  @media(max-width:760px){.hero-intro{grid-template-columns:1fr;padding:10px 16px 30px;}.hero-intro .intro-text{grid-column:auto;}}
-  .giant{
-    display:flex;align-items:flex-end;justify-content:space-between;
-    padding:0 28px;
+  .hero .meta{margin-top:14px;font-size:11.5px;font-weight:600;color:#6c665e;}
+  .hero .hand{
+    font-family:var(--hand);color:var(--pink);
+    font-size:clamp(22px,3.4vw,34px);margin-top:12px;
   }
-  .giant .hanzi{
-    font-size:clamp(120px,24vw,340px);line-height:.92;font-weight:700;
-    letter-spacing:-.02em;white-space:nowrap;flex:1;
+  .hero .scroll{
+    margin-top:36px;font-size:11px;font-weight:600;color:var(--pink);letter-spacing:.3em;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
   }
-  .giant .en{
-    writing-mode:vertical-rl;font-size:clamp(11px,1.4vw,16px);font-weight:500;
-    letter-spacing:.35em;color:var(--ink);margin-left:18px;padding-bottom:8px;
+  .hero .scroll i{font-style:normal;animation:bob 1.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+  .tape{
+    position:absolute;font-family:var(--hand);color:var(--pink);
+    font-size:clamp(18px,2.6vw,28px);transform:rotate(-8deg);
   }
-  .sticker{
-    position:absolute;right:6vw;bottom:-2vh;
-    writing-mode:vertical-rl;background:#f3f3f3;border:1px solid var(--red);
-    color:var(--red);font-weight:700;font-size:clamp(16px,2.2vw,26px);
-    padding:14px 8px;letter-spacing:.2em;line-height:1.2;
-    transform:rotate(3deg);box-shadow:0 2px 14px rgba(0,0,0,.08);
-  }
+  .tape.t1{top:120px;left:6vw;}
+  .tape.t2{top:200px;right:7vw;transform:rotate(6deg);}
+  @media(max-width:760px){.tape{display:none;}}
 
-  /* ---------- section head ---------- */
-  section{padding:110px 28px 40px;}
-  .sec-row{
-    display:flex;justify-content:space-between;align-items:baseline;
-    border-top:1px solid var(--ink);padding-top:10px;margin-bottom:56px;
-  }
-  .sec-title{font-size:13px;font-weight:500;}
-  .sec-no{font-size:13px;color:var(--gray);}
+  /* ---------- section ---------- */
+  section{padding:80px 32px;}
+  @media(max-width:640px){section{padding:60px 18px;}}
+  .sec-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:44px;}
+  .sec-row h2{font-family:var(--pixel);font-size:clamp(26px,4vw,40px);font-weight:600;}
+  .sec-row .no{font-family:var(--hand);color:var(--pink);font-size:clamp(20px,3vw,30px);transform:rotate(-4deg);}
 
   /* ---------- filters ---------- */
-  .filters{display:flex;flex-wrap:wrap;gap:26px;margin-bottom:60px;font-size:13px;}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:50px;}
   .filters button{
-    background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;
-    color:var(--gray);padding:0;position:relative;letter-spacing:.05em;
+    font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;
+    background:var(--paper);border:1.5px solid var(--ink);border-radius:100px;
+    padding:7px 16px;color:var(--ink);transition:all .2s;
   }
-  .filters button::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
-  .filters button:hover{color:var(--ink);}
-  .filters button.active{color:var(--ink);}
-  .filters button.active::after{transform:scaleX(1);}
+  .filters button:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(23,21,19,.12);}
+  .filters button.active{background:var(--ink);color:var(--cream);}
 
-  /* ---------- works grid ---------- */
-  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:90px 34px;padding-bottom:40px;}
-  @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr);}}
-  @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr);gap:50px 18px;}}
-  @media(max-width:480px){.grid{grid-template-columns:1fr;}}
+  /* ---------- works ---------- */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 40px;}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.grid{grid-template-columns:1fr;}}
   .card{cursor:pointer;animation:fadeUp .55s ease both;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
   .card.hidden{display:none;}
-  /* 错落布局 */
-  .card:nth-child(4n+2){transform:translateY(46px);}
-  .card:nth-child(4n+3){transform:translateY(12px);}
-  .card:nth-child(4n+4){transform:translateY(70px);}
-  @media(max-width:1000px){.card:nth-child(n){transform:none;}}
-  .card img{
-    width:100%;display:block;background:#f4f4f4;
-    transition:transform .45s cubic-bezier(.2,.8,.2,1);
-  }
-  .card:hover img{transform:scale(1.02);}
-  .card-cap{margin-top:10px;display:flex;justify-content:space-between;gap:10px;font-size:12px;}
-  .card-cap .t{font-weight:500;}
-  .card-cap .y{color:var(--gray);white-space:nowrap;}
-  .card-en{font-size:11px;color:var(--gray);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;}
+  .card .sticker{padding:8px 8px 12px;transition:transform .35s;}
+  .card:nth-child(odd) .sticker{transform:rotate(-1.6deg);}
+  .card:nth-child(even) .sticker{transform:rotate(1.6deg);}
+  .card:hover .sticker{transform:rotate(0) translateY(-8px);box-shadow:0 18px 44px rgba(23,21,19,.2);}
+  .card img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:9px;}
+  .card-cap{padding:12px 4px 0;display:flex;justify-content:space-between;gap:10px;align-items:baseline;}
+  .card-cap .t{font-weight:600;font-size:13.5px;}
+  .card-cap .y{font-family:var(--pixel);font-size:12px;color:var(--pink);white-space:nowrap;}
+  .card-en{padding:2px 4px 0;font-size:10.5px;color:#8a857d;letter-spacing:.16em;text-transform:uppercase;}
 
   /* ---------- lightbox ---------- */
-  .lightbox{position:fixed;inset:0;z-index:200;display:none;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);}
+  .lightbox{position:fixed;inset:0;z-index:200;display:none;background:rgba(246,241,232,.96);backdrop-filter:blur(8px);}
   .lightbox.open{display:flex;flex-direction:column;}
-  .lb-top{display:flex;justify-content:space-between;align-items:baseline;padding:16px 28px;border-bottom:1px solid var(--ink);}
-  .lb-title{font-size:13px;font-weight:500;}
-  .lb-count{color:var(--gray);font-size:12px;margin-left:14px;}
-  .lb-close{background:none;border:1px solid var(--ink);width:38px;height:38px;font-size:16px;cursor:pointer;transition:all .2s;}
-  .lb-close:hover{background:var(--ink);color:#fff;}
-  .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 70px;position:relative;min-height:0;}
-  .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;}
-  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--ink);width:44px;height:44px;font-size:16px;cursor:pointer;transition:all .2s;}
-  .lb-nav:hover{background:var(--ink);color:#fff;}
+  .lb-top{display:flex;justify-content:space-between;align-items:center;padding:14px 28px;}
+  .lb-title{font-family:var(--pixel);font-size:15px;font-weight:600;}
+  .lb-count{color:var(--pink);font-family:var(--pixel);font-size:13px;margin-left:12px;}
+  .lb-close{background:var(--paper);border:1.5px solid var(--ink);border-radius:100px;width:40px;height:40px;font-size:17px;cursor:pointer;transition:all .2s;}
+  .lb-close:hover{background:var(--ink);color:var(--cream);}
+  .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:22px 72px;position:relative;min-height:0;}
+  .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:var(--shadow);}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:var(--paper);border:1.5px solid var(--ink);border-radius:100px;width:46px;height:46px;font-size:16px;cursor:pointer;transition:all .2s;}
+  .lb-nav:hover{background:var(--ink);color:var(--cream);}
   .lb-prev{left:16px;}
   .lb-next{right:16px;}
-  .lb-bottom{padding:12px 28px 22px;text-align:center;color:var(--gray);font-size:12.5px;max-width:780px;margin:0 auto;}
-  @media(max-width:640px){.lb-stage{padding:16px 54px;}.lb-top,.lb-bottom{padding-left:16px;padding-right:16px;}}
+  .lb-bottom{padding:12px 28px 22px;text-align:center;color:#6c665e;font-size:13px;max-width:780px;margin:0 auto;}
+  @media(max-width:640px){.lb-stage{padding:14px 54px;}.lb-top,.lb-bottom{padding-left:16px;padding-right:16px;}}
 
   /* ---------- about ---------- */
-  .about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;font-size:13px;}
-  @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:34px;}}
-  .about-lead{grid-column:1/3;font-size:clamp(17px,2.2vw,24px);line-height:1.5;font-weight:500;}
-  .about-lead .red{color:var(--red);}
-  .about-side p{margin-bottom:12px;color:#333;}
-  .timeline{list-style:none;grid-column:3/5;}
-  @media(max-width:760px){.timeline{grid-column:auto;}}
-  .timeline li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:start;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:36px;}}
+  .about-lead{font-size:clamp(19px,2.6vw,27px);line-height:1.55;font-weight:600;}
+  .about-lead .pink{color:var(--pink);}
+  .about-note{margin-top:18px;color:#55504a;font-size:13.5px;}
+  .chip-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;}
+  .chip-row span{background:var(--paper);border-radius:100px;padding:6px 15px;font-size:12px;font-weight:600;box-shadow:0 3px 10px rgba(23,21,19,.08);}
+  .timeline{list-style:none;}
+  .timeline li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-bottom:1.5px dashed #d8d1c5;}
   @media(max-width:560px){.timeline li{grid-template-columns:1fr;gap:2px;}}
-  .tl-year{color:var(--gray);font-size:12px;}
-  .tl-title{font-weight:500;}
-  .tl-sub{color:var(--gray);font-size:12px;}
-  .chip-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:0 22px;}
-  .chip-row span{border-bottom:1px solid var(--ink);padding:0 0 2px;margin-bottom:10px;font-size:12.5px;}
+  .tl-year{font-family:var(--pixel);font-size:12px;color:var(--pink);padding-top:3px;}
+  .tl-title{font-weight:600;font-size:14px;}
+  .tl-sub{color:#8a857d;font-size:12.5px;}
 
-  /* ---------- contact ---------- */
-  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-  @media(max-width:760px){.contact-grid{grid-template-columns:1fr;}}
-  .contact-item{border-top:1px solid var(--ink);padding-top:10px;}
-  .contact-item .k{color:var(--gray);font-size:12px;margin-bottom:6px;display:block;}
-  .contact-item .v{font-size:16px;font-weight:500;border-bottom:1px solid transparent;transition:border-color .2s;}
-  a.contact-link:hover .v{border-bottom-color:var(--ink);}
-
-  /* ---------- footer marquee ---------- */
-  .marquee{
-    margin-top:100px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
-    overflow:hidden;white-space:nowrap;
-  }
-  .marquee-inner{
-    display:inline-block;padding:18px 0;
-    font-size:clamp(40px,7vw,90px);font-weight:700;line-height:1;letter-spacing:.02em;
-    animation:slide 22s linear infinite;
-  }
-  .marquee-inner span{margin:0 .35em;}
-  .marquee-inner .red{color:var(--red);}
-  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .foot-meta{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:16px 28px 26px;
-    color:var(--gray);font-size:11.5px;letter-spacing:.08em;
-  }
+  /* ---------- contact (dark) ---------- */
+  .dark{background:#141210;color:#f6f1e8;padding:90px 32px 40px;}
+  .dark .big{font-family:var(--pixel);font-size:clamp(44px,8vw,110px);line-height:1.02;font-weight:600;text-align:center;}
+  .dark .big em{font-style:normal;color:var(--pink);}
+  .dark .hand{text-align:center;font-family:var(--hand);color:var(--pink);font-size:clamp(24px,3.6vw,36px);margin-top:10px;}
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1000px;margin:60px auto 0;}
+  @media(max-width:760px){.contact-grid{grid-template-columns:repeat(2,1fr);}}
+  .contact-item{background:#211e1a;border-radius:14px;padding:18px 20px;text-align:center;transition:transform .25s;}
+  .contact-item:hover{transform:translateY(-4px);}
+  .contact-item .k{color:#8a857d;font-size:10.5px;letter-spacing:.2em;display:block;margin-bottom:6px;}
+  .contact-item .v{font-size:14.5px;font-weight:600;}
+  .dark .foot-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 28px;margin-top:70px;color:#8a857d;font-size:11px;letter-spacing:.12em;}
+  .dark .foot-meta .pixel{color:var(--pink);}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="col">
-    <a class="brand" href="#top">RAY</a>
-    <nav>
-      <a href="#works" class="up">Works 作品</a>
-      <a href="#about" class="up">About 关于</a>
-      <a href="#contact" class="up">Contact 联系</a>
-    </nav>
+<nav class="top">
+  <a class="logo" href="#top">芮鹅<em>RAY CHOU</em></a>
+  <div class="links up">
+    <a href="#works">作品</a>
+    <a href="#about">关于</a>
+    <a href="#contact">联系</a>
   </div>
-  <div class="col c2">
-    <a class="brand" href="#top">CHOU</a>
-    <span style="color:var(--gray);font-weight:400;">周芮 · 平面设计师</span>
-  </div>
-  <div class="col c3" style="color:var(--gray);font-weight:400;">
-    <span>PORTFOLIO 2022 — 2026</span>
-    <span>主视觉 · 活动物料 · 插画 · 排版</span>
-  </div>
-  <div class="col c4">
-    <span>尽兴开怀</span>
-  </div>
-</header>
+</nav>
 
-<main id="top">
+<!-- hero -->
+<div class="hero" id="top">
+  <span class="tape t1">hello~</span>
+  <span class="tape t2">尽兴开怀!</span>
+  <div class="sticker-row">
+    <div class="sticker s1"><img src="assets/sport-2025.jpg" alt="潮燃跃动运动季"></div>
+    <div class="sticker s2"><img src="assets/newyear-2025.jpg" alt="吉时行乐新年"></div>
+    <div class="sticker s3"><img src="assets/forest-final.jpg" alt="重庆森林"></div>
+    <div class="sticker s4"><img src="assets/garden-open.jpg" alt="花园城开业"></div>
+    <div class="sticker s5"><img src="assets/dimoo.jpg" alt="DIMOO主题巴士"></div>
+  </div>
+  <h1>PORTFOLIO</h1>
+  <div class="meta up">Graphic Designer · Chengdu · 主视觉 / 活动物料 / 插画 / 排版</div>
+  <div class="hand">还算有趣的一个人 ~</div>
+  <div class="scroll up">Scroll<i>↓</i></div>
+</div>
 
-  <!-- hero -->
-  <div class="hero">
-    <div class="hero-intro">
-      <div class="intro-name">RAY CHOU<br>芮鹅</div>
-      <div></div>
-      <div class="intro-text">
-        is a graphic designer based in Chengdu.<br>
-        She specializes in key visuals, campaign materials, illustrations,
-        interactive WeChat layouts, 3D renders, and more.<br>
-        <div class="intro-red">还算有趣的一个人 Fairly Interesting Person!</div>
-        <div class="intro-contact">
-          <a href="mailto:563301829@qq.com">563301829@qq.com</a> / <a href="tel:18782284212">187 8228 4212</a>
-        </div>
+<!-- works -->
+<section id="works">
+  <div class="sec-row">
+    <h2>作品集</h2>
+    <span class="no">works ✳</span>
+  </div>
+  <div class="filters" id="filters">
+    <button class="active" data-f="all">全部</button>
+    <button data-f="kv">商业空间档期</button>
+    <button data-f="event">活动物料</button>
+    <button data-f="online">线上与排版</button>
+    <button data-f="lab">练习与实验</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<!-- about -->
+<section id="about">
+  <div class="sec-row">
+    <h2>关于我</h2>
+    <span class="no">about me ✳</span>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p class="about-lead">从产品造型到视觉传达，从商业空间档期到公众号交互排版。<br><span class="pink">始终相信审美比技巧更重要。</span></p>
+      <p class="about-note">周芮，平面设计师 / 视觉编辑，常驻成都。曾负责「幸会SALON」公众号整体视觉，平均每年 200 篇交互排版；为重庆光环、成都悠方、花园城等商业体打造多个档期主视觉与线下打卡场景。</p>
+      <div class="chip-row">
+        <span>Photoshop</span><span>Illustrator</span><span>After Effects</span>
+        <span>Procreate</span><span>Rhino</span><span>KeyShot</span>
+        <span>秀米交互排版</span><span>公众号运营</span>
+        <span>电影</span><span>音乐</span><span>动漫</span><span>撸猫</span>
       </div>
     </div>
-    <div class="giant">
-      <div class="hanzi">芮鹅</div>
-      <div class="en">GRAPHIC DESIGN — CHENGDU</div>
-    </div>
-    <div class="sticker">平面设计<br>禁止无聊</div>
+    <ul class="timeline">
+      <li><span class="tl-year">2020-2022</span><div><div class="tl-title">成都幸会文化传播 · 视觉编辑</div><div class="tl-sub">公众号视觉 / 沙龙发布会活动 / H5 与物料</div></div></li>
+      <li><span class="tl-year">2018</span><div><div class="tl-title">康联畅享（北京）医疗 · 建模实习生</div><div class="tl-sub">产品建模与渲染</div></div></li>
+      <li><span class="tl-year">2018-2020</span><div><div class="tl-title">南宁师范大学 · 视觉传达设计</div></div></li>
+      <li><span class="tl-year">2015-2018</span><div><div class="tl-title">北海艺术设计学院 · 产品造型设计</div></div></li>
+    </ul>
   </div>
+</section>
 
-  <!-- works -->
-  <section id="works">
-    <div class="sec-row">
-      <h2 class="sec-title up">Works — 精选作品</h2>
-      <span class="sec-no">01</span>
-    </div>
-    <div class="filters" id="filters">
-      <button class="active" data-f="all">全部 All</button>
-      <button data-f="kv">商业空间档期 KV</button>
-      <button data-f="event">活动物料</button>
-      <button data-f="online">线上与排版</button>
-      <button data-f="lab">练习与实验</button>
-    </div>
-    <div class="grid" id="grid"></div>
-  </section>
-
-  <!-- about -->
-  <section id="about">
-    <div class="sec-row">
-      <h2 class="sec-title up">About — 关于我</h2>
-      <span class="sec-no">02</span>
-    </div>
-    <div class="about-grid">
-      <div class="about-lead" style="grid-column:1/3;">
-        从产品造型到视觉传达，从商业空间档期到公众号交互排版。<br>
-        <span class="red">始终相信审美比技巧更重要。</span>
-      </div>
-      <div class="about-side">
-        <p>周芮，平面设计师 / 视觉编辑，常驻成都。</p>
-        <p>曾负责「幸会SALON」公众号整体视觉，平均每年 200 篇交互排版；为重庆光环、成都悠方、花园城等商业体打造多个档期主视觉与线下打卡场景。</p>
-        <div class="chip-row">
-          <span>Photoshop</span><span>Illustrator</span><span>After Effects</span>
-          <span>Procreate</span><span>Rhino</span><span>KeyShot</span>
-          <span>秀米交互排版</span><span>公众号运营</span>
-          <span>电影</span><span>音乐</span><span>动漫</span><span>撸猫</span>
-        </div>
-      </div>
-      <ul class="timeline">
-        <li><span class="tl-year">2020.08 – 2022.05</span><div><div class="tl-title">成都幸会文化传播 · 视觉编辑</div><div class="tl-sub">公众号视觉 / 沙龙发布会活动 / H5 与物料</div></div></li>
-        <li><span class="tl-year">2018.04 – 2018.06</span><div><div class="tl-title">康联畅享（北京）医疗 · 建模实习生</div><div class="tl-sub">产品建模与渲染</div></div></li>
-        <li><span class="tl-year">2018 – 2020</span><div><div class="tl-title">南宁师范大学 · 视觉传达设计</div></div></li>
-        <li><span class="tl-year">2015 – 2018</span><div><div class="tl-title">北海艺术设计学院 · 产品造型设计</div></div></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- contact -->
-  <section id="contact">
-    <div class="sec-row">
-      <h2 class="sec-title up">Contact — 联系我</h2>
-      <span class="sec-no">03</span>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-item"><span class="k">TEL · 电话</span><a class="contact-link" href="tel:18782284212"><span class="v">187 8228 4212</span></a></div>
-      <div class="contact-item"><span class="k">EMAIL · 邮箱</span><a class="contact-link" href="mailto:563301829@qq.com"><span class="v">563301829@qq.com</span></a></div>
-      <div class="contact-item"><span class="k">BASE · 城市</span><span class="v">成都 Chengdu</span></div>
-      <div class="contact-item"><span class="k">STATUS · 状态</span><span class="v" style="color:var(--red);">接新项目与合作</span></div>
-    </div>
-  </section>
-
-  <!-- footer marquee -->
-  <div class="marquee">
-    <div class="marquee-inner" id="marquee"></div>
+<!-- contact -->
+<section class="dark" id="contact">
+  <div class="big">THANK<br><em>YOU~</em></div>
+  <div class="hand">期待与你合作 · Design, beauty, fun</div>
+  <div class="contact-grid">
+    <div class="contact-item"><span class="k up">Tel · 电话</span><a href="tel:18782284212"><span class="v">187 8228 4212</span></a></div>
+    <div class="contact-item"><span class="k up">Email · 邮箱</span><a href="mailto:563301829@qq.com"><span class="v">563301829@qq.com</span></a></div>
+    <div class="contact-item"><span class="k up">Base · 城市</span><span class="v">成都 Chengdu</span></div>
+    <div class="contact-item"><span class="k up">Status · 状态</span><span class="v" style="color:var(--pink);">接新项目与合作</span></div>
   </div>
   <div class="foot-meta">
     <span>© 2026 RAY CHOU 芮鹅</span>
     <span>PORTFOLIO — GRAPHIC DESIGN</span>
-    <span>CHENGDU, CHINA</span>
-    <span style="color:var(--red);">禁止无聊 · ALL IN FOR FUN</span>
+    <span class="pixel">禁止无聊 ✳ ALL IN FOR FUN</span>
   </div>
-
-</main>
+</section>
 
 <!-- lightbox -->
 <div class="lightbox" id="lightbox">
@@ -401,7 +355,7 @@ const works = [
   {
     title:"幸会SALON · 公众号排版", en:"Official Account Layout", cat:"online", cover:"assets/wechat-1.jpg",
     desc:"2020.08–2022.05 长期负责「幸会SALON」公众号视觉排版，平均每年 200 篇，整篇交互设计、增加阅读趣味性。",
-    tags:["交互排版","长期项目"], year:"2020 – 2022",
+    tags:["交互排版","长期项目"], year:"2020-2022",
     imgs:["assets/wechat-1.jpg","assets/wechat-2.jpg"]
   },
   {
@@ -472,8 +426,8 @@ works.forEach((w,i)=>{
   const el = document.createElement("article");
   el.className = "card"; el.dataset.cat = w.cat;
   el.innerHTML = `
-    <img src="${w.cover}" alt="${w.title}" loading="lazy">
-    <div class="card-cap"><span class="t">${w.title}</span><span class="y">${w.year}</span></div>
+    <div class="sticker"><img src="${w.cover}" alt="${w.title}" loading="lazy"></div>
+    <div class="card-cap"><span class="t">${w.title}</span><span class="y pixel">${w.year}</span></div>
     <div class="card-en">${w.en}</div>`;
   el.addEventListener("click",()=>openLb(i));
   grid.appendChild(el);
@@ -488,11 +442,6 @@ document.getElementById("filters").addEventListener("click",e=>{
     c.classList.toggle("hidden", f!=="all" && c.dataset.cat!==f);
   });
 });
-
-/* marquee */
-const mq = document.getElementById("marquee");
-const seg = `<span>芮鹅</span><span class="red">RAY CHOU</span><span>平面设计</span><span>禁止无聊</span><span class="red">尽兴开怀</span>`;
-mq.innerHTML = seg.repeat(6);
 
 /* lightbox */
 let cur = 0, idx = 0;
@@ -521,7 +470,7 @@ document.addEventListener("keydown",e=>{
 });
 
 /* nav active state */
-const navLinks = document.querySelectorAll("header nav a");
+const navLinks = document.querySelectorAll("nav.top .links a");
 const secs = ["works","about","contact"].map(id=>document.getElementById(id));
 window.addEventListener("scroll",()=>{
   let curId = "";
