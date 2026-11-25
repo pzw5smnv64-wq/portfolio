@@ -136,6 +136,7 @@
   .lb-close:hover{background:var(--ink);color:var(--cream);}
   .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:22px 72px;position:relative;min-height:0;}
   .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:var(--shadow);}
+  .lb-stage video{max-width:100%;max-height:100%;border-radius:10px;box-shadow:var(--shadow);background:#000;}
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:var(--paper);border:1.5px solid var(--ink);border-radius:100px;width:46px;height:46px;font-size:16px;cursor:pointer;transition:all .2s;}
   .lb-nav:hover{background:var(--ink);color:var(--cream);}
   .lb-prev{left:16px;}
@@ -280,6 +281,7 @@
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一张">←</button>
     <div class="lb-intro" id="lbIntro"></div>
     <img id="lbImg" src="" alt="">
+    <video id="lbVid" src="" controls playsinline loop style="display:none"></video>
     <button class="lb-nav lb-next" id="lbNext" aria-label="下一张">→</button>
   </div>
   <div class="lb-bottom" id="lbDesc"></div>
@@ -304,7 +306,7 @@ const works = [
     kvset:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg"],
     desc:"大悦城西南商业（成都/重庆/武汉）年度视觉提案并成功中标：以「JOY IN LIVE 生动即生活」为总纲，四款人群主视觉并排成阵——PARK 在公园里自在漫游、PET 在奔跑中活出宠趣、SPORT 在律动中活出生动、KIDS 在陪伴里悦享时光；真人摄影 × 手写笔刷字体 × 3D 蘑菇装置，延展上新季册页、高德地图联名海报、道旗与户外海报系统。",
     tags:["年度视觉","提案中标","人群主视觉","延展系统"], year:"2026 · 成都/重庆/武汉",
-    imgs:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg","assets/swjoy-main.jpg","assets/swjoy-new.jpg","assets/swjoy-amap.jpg","assets/swjoy-flag.jpg","assets/swjoy-poster.jpg"]
+    imgs:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg","assets/swjoy-main.jpg","assets/swjoy-annual.mp4","assets/swjoy-new.jpg","assets/swjoy-amap.jpg","assets/swjoy-flag.jpg","assets/swjoy-poster.jpg"]
   },
   {
     title:"高新花园城 · 年度视觉「近享自在」", en:"ENJOYMENT", cat:"kv", cover:"assets/gxn-white.jpg",
@@ -479,21 +481,35 @@ document.getElementById("filters").addEventListener("click",e=>{
 let cur = 0, idx = 0;
 const lb = document.getElementById("lightbox");
 function openLb(i){ cur=i; idx=0; render(); lb.classList.add("open"); document.body.style.overflow="hidden"; }
-function closeLb(){ lb.classList.remove("open"); document.body.style.overflow=""; }
+function closeLb(){ const v=document.getElementById("lbVid"); v.pause(); lb.classList.remove("open"); document.body.style.overflow=""; }
+function setMedia(src){
+  const img = document.getElementById("lbImg");
+  const vid = document.getElementById("lbVid");
+  const isVideo = /\.(mp4|webm|mov)$/i.test(src);
+  if(isVideo){
+    img.style.display = "none"; vid.style.display = "";
+    if(vid.getAttribute("src")!==src) vid.setAttribute("src", src);
+    vid.play().catch(()=>{});
+  }else{
+    vid.pause(); vid.removeAttribute("src"); vid.style.display = "none"; img.style.display = "";
+    img.src = src;
+  }
+}
 function render(){
   const w = works[cur];
   const total = w.imgs.length + 1;
   const intro = document.getElementById("lbIntro");
-  const img = document.getElementById("lbImg");
   document.getElementById("lbTitle").textContent = w.title;
   document.getElementById("lbCount").textContent = `${idx+1} / ${total}`;
   if(idx===0){
     if(w.slide){
-      intro.style.display = "none"; img.style.display = "";
-      img.src = w.slide;
+      intro.style.display = "none"; setMedia(w.slide);
       document.getElementById("lbDesc").textContent = w.desc;
     }else{
-      intro.style.display = "flex"; img.style.display = "none";
+      intro.style.display = "flex";
+      document.getElementById("lbImg").style.display = "none";
+      document.getElementById("lbVid").style.display = "none";
+      document.getElementById("lbVid").pause();
       const big = w.en.split(" ").filter(Boolean).join("<br>");
       intro.innerHTML =
         `<div class="head"><span>${w.title}</span><span class="cat">PLACEHOLDER · 待更新</span></div>` +
@@ -503,8 +519,7 @@ function render(){
       document.getElementById("lbDesc").textContent = w.desc;
     }
   }else{
-    intro.style.display = "none"; img.style.display = "";
-    img.src = w.imgs[idx-1];
+    intro.style.display = "none"; setMedia(w.imgs[idx-1]);
     document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.tags.join(" / ")}`;
   }
   const single = total<2;
