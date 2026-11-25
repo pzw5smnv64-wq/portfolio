@@ -7,7 +7,7 @@
 <meta name="description" content="周芮（Ray Chou / 芮鹅）平面设计师作品集 — 主视觉、活动物料、插画与排版设计">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&family=Zhi+Mang+Xing&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#f6f1e8;
@@ -134,6 +134,16 @@
   .lb-next{right:16px;}
   .lb-bottom{padding:12px 28px 22px;text-align:center;color:#6c665e;font-size:13px;max-width:780px;margin:0 auto;}
   @media(max-width:640px){.lb-stage{padding:14px 54px;}.lb-top,.lb-bottom{padding-left:16px;padding-right:16px;}}
+  /* 介绍页（灯箱第一页） */
+  .lb-intro{background:var(--paper);border-radius:14px;box-shadow:var(--shadow);width:min(100%,940px);height:min(100%,620px);padding:30px 44px 26px;position:relative;display:none;flex-direction:column;overflow:hidden;}
+  .lb-intro .head{display:flex;justify-content:space-between;align-items:center;font-family:var(--pixel);font-size:14px;font-weight:600;color:var(--ink);gap:12px;}
+  .lb-intro .head .cat{color:var(--pink);white-space:nowrap;}
+  .lb-intro .big{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(34px,6.2vw,76px);line-height:1.04;text-transform:uppercase;color:var(--ink);}
+  .lb-intro .cn{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px;}
+  .lb-intro .cn span{border:1.5px solid var(--ink);border-radius:100px;padding:4px 14px;font-size:12.5px;font-family:var(--pixel);font-weight:500;color:var(--ink);}
+  .lb-intro .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;}
+  .lb-intro .foot .yr{color:var(--pink);font-family:var(--pixel);font-size:13px;font-weight:600;max-width:70%;}
+  .lb-intro .foot .sig{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:17px;letter-spacing:.08em;}
 
   /* ---------- about ---------- */
   .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:start;}
@@ -260,6 +270,7 @@
   </div>
   <div class="lb-stage">
     <button class="lb-nav lb-prev" id="lbPrev" aria-label="上一张">←</button>
+    <div class="lb-intro" id="lbIntro"></div>
     <img id="lbImg" src="" alt="">
     <button class="lb-nav lb-next" id="lbNext" aria-label="下一张">→</button>
   </div>
@@ -269,7 +280,7 @@
 <script>
 const works = [
   {
-    title:"重庆光环 · 重庆森林", en:"Chongqing Forest", cat:"kv", cover:"assets/forest-final.jpg",
+    title:"重庆光环 · 重庆森林", en:"Chongqing Forest", cat:"kv", cover:"assets/cq-forest.jpg",
     desc:"以王家卫式梦核感为思路：森林与金鱼装置结合、高饱和度迷幻光感、金鱼在森林中游动。夏日限定展落地沐光森林 O' Garden，用小成本场景感打造线下超强流量打卡点位，含超透卡与线上宣发物料。",
     tags:["主视觉","线下打卡","线上宣发"], year:"2026",
     imgs:["assets/forest-final.jpg","assets/cq-forest.jpg","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
@@ -287,7 +298,7 @@ const works = [
     imgs:["assets/garden-open.jpg","assets/steampunk.jpg"]
   },
   {
-    title:"成都悠方 · 2025 新年「吉时行乐」", en:"Happy New Year", cat:"kv", cover:"assets/newyear-2025.jpg",
+    title:"成都悠方 · 2025 新年「吉时行乐」", en:"Happy New Year", cat:"kv", cover:"assets/cd-newyear.jpg",
     desc:"舞狮元素 × 过年氛围：原创祥云、宝相花纹、金铜器花纹、铜钱、绣球等插画元素体系，构成完整的新年档期视觉，串联吉狮鸿运当头装置、醒狮贺新、花灯初上等系列活动。含线上宣发与线下物料。",
     tags:["主视觉","插画元素","物料延展"], year:"2025",
     imgs:["assets/newyear-2025.jpg","assets/cd-newyear.jpg","assets/cd-newyear-elements.jpg","assets/cd-newyear-goods.jpg"]
@@ -305,10 +316,10 @@ const works = [
     imgs:["assets/cq-sakura.jpg","assets/cq-sakura-goods.jpg","assets/cq-sakura-long.jpg"]
   },
   {
-    title:"泡泡玛特 DIMOO 主题巴士 · 全国首站", en:"DIMOO World", cat:"kv", cover:"assets/dimoo.jpg",
+    title:"泡泡玛特 DIMOO 主题巴士 · 全国首站", en:"DIMOO World", cat:"kv", cover:"assets/dimoo-wide.jpg",
     desc:"DIMOO「在你身边」系列主题巴士全国首站落地成都悠方：云端巴士主视觉 + 成都巡游路线地图 + 停靠信息设计，IP 联名活动全案视觉。",
     tags:["IP 联名","活动视觉","信息设计"], year:"2024",
-    imgs:["assets/dimoo.jpg"]
+    imgs:["assets/dimoo-wide.jpg","assets/dimoo.jpg"]
   },
   {
     title:"双子面包节 2.0 × 咖啡文化节 3.0", en:"Soft Landing · Bakery & Cafe LAB", cat:"kv", cover:"assets/bread-kv-main.jpg",
@@ -323,10 +334,10 @@ const works = [
     imgs:["assets/hefenjie.jpg"]
   },
   {
-    title:"花园城 · 织光入梦双旦满月季", en:"Dreams Winter", cat:"kv", cover:"assets/dream-winter.jpg",
+    title:"花园城 · 织光入梦双旦满月季", en:"Dreams Winter", cat:"kv", cover:"assets/dream-wide.jpg",
     desc:"「织光入梦」双旦档期主视觉：蓝橙交织的经纬线条如织物般穿插，雪花与光带编织冬日梦境，12.05-01.03 双旦满月季。",
     tags:["档期主视觉","几何构成"], year:"2025",
-    imgs:["assets/dream-winter.jpg"]
+    imgs:["assets/dream-wide.jpg","assets/dream-winter.jpg"]
   },
   {
     title:"悠方 · Go蕉游 UNIART 艺术季", en:"Go Banana", cat:"kv", cover:"assets/banana.jpg",
@@ -341,10 +352,10 @@ const works = [
     imgs:["assets/love-520.jpg"]
   },
   {
-    title:"成都悠方 · 端午会员活动", en:"Dragon Boat Festival", cat:"kv", cover:"assets/duanwu.jpg",
+    title:"成都悠方 · 端午会员活动", en:"Dragon Boat Festival", cat:"kv", cover:"assets/duanwu-wide.jpg",
     desc:"「粽享端午 会员有礼」活动海报：清新绿意的粽子插画与三角构成，覆盖龙粽登场、会员香囊等权益信息设计。",
     tags:["活动海报","信息设计"], year:"2024",
-    imgs:["assets/duanwu.jpg"]
+    imgs:["assets/duanwu-wide.jpg","assets/duanwu.jpg"]
   },
   {
     title:"成都悠方 · 心愿碰杯季", en:"Make A Wish", cat:"kv", cover:"assets/cd-wish.jpg",
@@ -450,17 +461,32 @@ function openLb(i){ cur=i; idx=0; render(); lb.classList.add("open"); document.b
 function closeLb(){ lb.classList.remove("open"); document.body.style.overflow=""; }
 function render(){
   const w = works[cur];
-  document.getElementById("lbImg").src = w.imgs[idx];
+  const total = w.imgs.length + 1;
+  const intro = document.getElementById("lbIntro");
+  const img = document.getElementById("lbImg");
   document.getElementById("lbTitle").textContent = w.title;
-  document.getElementById("lbCount").textContent = `${idx+1} / ${w.imgs.length}`;
-  document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.tags.join(" / ")}`;
-  const single = w.imgs.length<2;
+  document.getElementById("lbCount").textContent = `${idx+1} / ${total}`;
+  if(idx===0){
+    intro.style.display = "flex"; img.style.display = "none";
+    const big = w.en.split(" ").filter(Boolean).join("<br>");
+    intro.innerHTML =
+      `<div class="head"><span>${w.title}</span><span class="cat">PROJECT · 介绍</span></div>` +
+      `<div class="big">${big}</div>` +
+      `<div class="cn">${w.tags.map(t=>`<span>${t}</span>`).join("")}</div>` +
+      `<div class="foot"><span class="yr"># ${w.year}</span><span class="sig">RAY CHOU</span></div>`;
+    document.getElementById("lbDesc").textContent = w.desc;
+  }else{
+    intro.style.display = "none"; img.style.display = "";
+    img.src = w.imgs[idx-1];
+    document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.tags.join(" / ")}`;
+  }
+  const single = total<2;
   document.getElementById("lbPrev").style.display = single?"none":"";
   document.getElementById("lbNext").style.display = single?"none":"";
 }
 document.getElementById("lbClose").onclick = closeLb;
-document.getElementById("lbPrev").onclick = e=>{e.stopPropagation(); idx=(idx-1+works[cur].imgs.length)%works[cur].imgs.length; render();};
-document.getElementById("lbNext").onclick = e=>{e.stopPropagation(); idx=(idx+1)%works[cur].imgs.length; render();};
+document.getElementById("lbPrev").onclick = e=>{e.stopPropagation(); const n=works[cur].imgs.length+1; idx=(idx-1+n)%n; render();};
+document.getElementById("lbNext").onclick = e=>{e.stopPropagation(); const n=works[cur].imgs.length+1; idx=(idx+1)%n; render();};
 lb.addEventListener("click",e=>{ if(e.target===lb||e.target.classList.contains("lb-stage")) closeLb(); });
 document.addEventListener("keydown",e=>{
   if(!lb.classList.contains("open")) return;
