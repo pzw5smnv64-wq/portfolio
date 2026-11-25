@@ -315,7 +315,7 @@ const works = [
     title:"重庆光环 · 重庆森林", en:"Chongqing Forest", cat:"kv", cover:"assets/forest-wide.jpg", slide:"assets/cq-forest.jpg",
     desc:"以王家卫式梦核感为思路：森林与金鱼装置结合、高饱和度迷幻光感、金鱼在森林中游动。夏日限定展落地沐光森林 O' Garden，用小成本场景感打造线下超强流量打卡点位，含超透卡与线上宣发物料。",
     tags:["主视觉","线下打卡","线上宣发"], year:"2026",
-    imgs:["assets/forest-final.jpg","assets/forest-goldfish.mp4","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
+    imgs:[["assets/forest-h.jpg","assets/forest-v.jpg"],"assets/forest-goldfish.mp4","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
   },
   {
     title:"西南大悦城 · 年度视觉提案（已中标）", en:"JOY CITY · JOY IN LIVE", cat:"kv", cover:"assets/swjoy-kv1.jpg",
@@ -543,13 +543,31 @@ function render(){
       document.getElementById("lbImg").style.display = "none";
       const v = document.getElementById("lbVid"); v.pause(); v.removeAttribute("src"); v.style.display = "none";
       const row = document.getElementById("lbRow");
-      row.style.display = "flex";
+      row.style.display = "flex"; row.style.height = "";
       row.innerHTML = item.map((s,i)=>`<img src="${s}" class="${i===lbKvi?"main":""}" data-i="${i}" alt="">`).join("");
       row.querySelectorAll("img").forEach(el=>el.addEventListener("click",e=>{
         e.stopPropagation();
-        if(el.classList.contains("main")){ openFs(el.src); }
+        if(row.dataset.mixed || el.classList.contains("main")){ openFs(el.src); }
         else{ lbKvi = +el.dataset.i; render(); }
       }));
+      /* 横竖混排时按各图原始比例分配宽度并计算行高，完整展示不裁切；比例一致(如四联竖版)保持原样式 */
+      const tuneRow = ()=>{
+        if(row.dataset.tuned) return; row.dataset.tuned = "1";
+        const els = [...row.querySelectorAll("img")];
+        const asp = els.map(el=>el.naturalWidth/el.naturalHeight);
+        if(asp.some(a=>!a||!isFinite(a))){ row.dataset.tuned=""; return; }
+        const mx = Math.max(...asp), mn = Math.min(...asp);
+        if(mx/mn <= 1.2) return;
+        row.dataset.mixed = "1";
+        const W = row.clientWidth || 1;
+        const h = Math.min(W / asp.reduce((s,a)=>s+a,0), window.innerHeight*0.74);
+        row.style.height = Math.round(h) + "px";
+        els.forEach((el,i)=>{ el.style.flex = String(Math.max(asp[i],0.4)); el.style.objectFit = "cover"; });
+      };
+      row.dataset.tuned = ""; row.dataset.mixed = "";
+      row.querySelectorAll("img").forEach(el=>{
+        if(el.complete && el.naturalWidth) tuneRow(); else el.addEventListener("load", tuneRow, {once:true});
+      });
       document.getElementById("lbDesc").textContent = `${w.tags.join(" / ")}  ·  四款人群主视觉并排，点击海报切换主打`;
     }else{
       document.getElementById("lbRow").style.display = "none";
