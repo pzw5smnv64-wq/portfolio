@@ -3,308 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>芮鹅 Ray Chou — 平面设计作品集</title>
+<title>芮鹅 RAY CHOU — 平面设计作品集</title>
 <meta name="description" content="周芮（Ray Chou / 芮鹅）平面设计师作品集 — 主视觉、活动物料、插画与排版设计">
 <style>
   :root{
     --ink:#111111;
-    --gray-1:#555555;
-    --gray-2:#888888;
-    --gray-3:#bbbbbb;
-    --line:#e5e5e5;
+    --red:#e03616;
+    --gray:#8a8a8a;
+    --line:#d9d9d9;
     --bg:#ffffff;
-    --bg-soft:#f6f6f6;
-    --max:1200px;
+    --sans:"Helvetica Neue",Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,sans-serif;
-    font-size:15px;
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{background:#111;color:#fff;}
-  .serif{font-family:"Didot","Bodoni 72","Playfair Display",Georgia,"Songti SC",serif;}
-  .container{max-width:var(--max);margin:0 auto;padding:0 40px;}
-  @media(max-width:640px){.container{padding:0 20px;}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--red);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  .up{text-transform:uppercase;letter-spacing:.06em;}
 
-  /* ---------- nav ---------- */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(255,255,255,.92);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);
+    border-bottom:1px solid var(--ink);
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    padding:14px 28px 12px;
+    font-size:13px;font-weight:500;
   }
-  .nav-inner{
-    max-width:var(--max);margin:0 auto;padding:16px 40px;
-    display:flex;justify-content:space-between;align-items:baseline;
+  header .col{display:flex;flex-direction:column;gap:2px;}
+  header .brand:hover{color:var(--red);}
+  header .c4{align-items:flex-end;text-align:right;color:var(--red);}
+  header nav{margin-top:6px;display:flex;flex-direction:column;gap:0;}
+  header nav a{width:fit-content;padding:0;position:relative;}
+  header nav a::after{content:"";position:absolute;left:0;bottom:1px;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+  header nav a:hover::after,header nav a.on::after{transform:scaleX(1);}
+  @media(max-width:760px){
+    header{grid-template-columns:1fr 1fr;padding:12px 16px;}
+    header .c3,header .c4{display:none;}
   }
-  .nav-logo{font-size:16px;letter-spacing:.12em;font-weight:600;}
-  .nav-logo span{color:var(--gray-2);font-weight:400;}
-  .nav-links{display:flex;gap:32px;list-style:none;}
-  .nav-links a{
-    color:var(--gray-1);text-decoration:none;font-size:13px;letter-spacing:.08em;
-    transition:color .2s;
-  }
-  .nav-links a:hover{color:#000;}
-  @media(max-width:640px){.nav-inner{padding:14px 20px;}.nav-links{gap:18px;}.nav-links a{font-size:12px;}}
+
+  main{padding-top:130px;}
 
   /* ---------- hero ---------- */
-  header{padding:170px 0 90px;}
-  .hero-kicker{
-    font-size:13px;letter-spacing:.35em;color:var(--gray-2);text-transform:uppercase;
-    margin-bottom:28px;
+  .hero{position:relative;overflow:hidden;}
+  .hero-intro{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:10px 28px 40px;
+    font-size:13px;
   }
-  .hero-name{
-    font-size:clamp(64px,11vw,140px);
-    line-height:.98;letter-spacing:.02em;font-weight:400;
+  .hero-intro .intro-name{font-weight:500;}
+  .hero-intro .intro-text{grid-column:3/5;}
+  .hero-intro .intro-red{color:var(--red);margin-top:14px;}
+  .hero-intro .intro-contact{margin-top:6px;}
+  @media(max-width:760px){.hero-intro{grid-template-columns:1fr;padding:10px 16px 30px;}.hero-intro .intro-text{grid-column:auto;}}
+  .giant{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    padding:0 28px;
   }
-  .hero-name em{font-style:italic;color:var(--gray-2);}
-  .hero-sub{
-    margin-top:36px;display:flex;flex-wrap:wrap;gap:14px 48px;
-    color:var(--gray-1);font-size:15px;
+  .giant .hanzi{
+    font-size:clamp(120px,24vw,340px);line-height:.92;font-weight:700;
+    letter-spacing:-.02em;white-space:nowrap;flex:1;
   }
-  .hero-sub b{font-weight:600;color:#000;}
-  .hero-line{margin-top:48px;height:1px;background:var(--ink);}
-  .hero-quote{
-    margin-top:20px;font-size:13px;color:var(--gray-2);letter-spacing:.05em;
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  .giant .en{
+    writing-mode:vertical-rl;font-size:clamp(11px,1.4vw,16px);font-weight:500;
+    letter-spacing:.35em;color:var(--ink);margin-left:18px;padding-bottom:8px;
+  }
+  .sticker{
+    position:absolute;right:6vw;bottom:-2vh;
+    writing-mode:vertical-rl;background:#f3f3f3;border:1px solid var(--red);
+    color:var(--red);font-weight:700;font-size:clamp(16px,2.2vw,26px);
+    padding:14px 8px;letter-spacing:.2em;line-height:1.2;
+    transform:rotate(3deg);box-shadow:0 2px 14px rgba(0,0,0,.08);
   }
 
-  /* ---------- section ---------- */
-  section{padding:90px 0;}
-  .sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:50px;}
-  .sec-no{font-size:13px;color:var(--gray-3);letter-spacing:.2em;}
-  .sec-title{font-size:clamp(28px,4vw,40px);font-weight:600;letter-spacing:.06em;}
+  /* ---------- section head ---------- */
+  section{padding:110px 28px 40px;}
+  .sec-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    border-top:1px solid var(--ink);padding-top:10px;margin-bottom:56px;
+  }
+  .sec-title{font-size:13px;font-weight:500;}
+  .sec-no{font-size:13px;color:var(--gray);}
 
-  /* ---------- filter ---------- */
-  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px;}
+  /* ---------- filters ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:26px;margin-bottom:60px;font-size:13px;}
   .filters button{
-    border:1px solid var(--line);background:none;color:var(--gray-1);
-    padding:8px 18px;font-size:13px;letter-spacing:.08em;cursor:pointer;
-    border-radius:100px;transition:all .2s;font-family:inherit;
+    background:none;border:none;cursor:pointer;font-family:inherit;font-size:13px;
+    color:var(--gray);padding:0;position:relative;letter-spacing:.05em;
   }
-  .filters button:hover{border-color:#111;color:#111;}
-  .filters button.active{background:#111;border-color:#111;color:#fff;}
+  .filters button::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s;}
+  .filters button:hover{color:var(--ink);}
+  .filters button.active{color:var(--ink);}
+  .filters button.active::after{transform:scaleX(1);}
 
   /* ---------- works grid ---------- */
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:56px 40px;}
-  @media(max-width:760px){.grid{grid-template-columns:1fr;gap:44px;}}
-  .card{cursor:pointer;animation:fadeUp .6s ease both;}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:90px 34px;padding-bottom:40px;}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr);gap:50px 18px;}}
+  @media(max-width:480px){.grid{grid-template-columns:1fr;}}
+  .card{cursor:pointer;animation:fadeUp .55s ease both;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
   .card.hidden{display:none;}
-  .card-cover{
-    overflow:hidden;background:var(--bg-soft);aspect-ratio:16/10;
+  /* 错落布局 */
+  .card:nth-child(4n+2){transform:translateY(46px);}
+  .card:nth-child(4n+3){transform:translateY(12px);}
+  .card:nth-child(4n+4){transform:translateY(70px);}
+  @media(max-width:1000px){.card:nth-child(n){transform:none;}}
+  .card img{
+    width:100%;display:block;background:#f4f4f4;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1);
   }
-  .card-cover img{
-    width:100%;height:100%;object-fit:cover;display:block;
-    transition:transform .6s ease;
-  }
-  .card:hover .card-cover img{transform:scale(1.025);}
-  .card-meta{margin-top:16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
-  .card-title{font-size:17px;font-weight:600;letter-spacing:.03em;}
-  .card-en{font-size:11px;color:var(--gray-3);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;}
-  .card-desc{margin-top:6px;color:var(--gray-1);font-size:13.5px;}
-  .card-tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;}
-  .tag{font-size:11px;color:var(--gray-2);border:1px solid var(--line);padding:3px 10px;border-radius:100px;letter-spacing:.05em;}
+  .card:hover img{transform:scale(1.02);}
+  .card-cap{margin-top:10px;display:flex;justify-content:space-between;gap:10px;font-size:12px;}
+  .card-cap .t{font-weight:500;}
+  .card-cap .y{color:var(--gray);white-space:nowrap;}
+  .card-en{font-size:11px;color:var(--gray);letter-spacing:.14em;text-transform:uppercase;margin-top:2px;}
 
   /* ---------- lightbox ---------- */
-  .lightbox{
-    position:fixed;inset:0;z-index:200;display:none;
-    background:rgba(255,255,255,.97);backdrop-filter:blur(6px);
-  }
+  .lightbox{position:fixed;inset:0;z-index:200;display:none;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);}
   .lightbox.open{display:flex;flex-direction:column;}
-  .lb-top{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:20px 40px;border-bottom:1px solid var(--line);
-  }
-  .lb-title{font-size:15px;font-weight:600;letter-spacing:.05em;}
-  .lb-count{color:var(--gray-2);font-size:13px;margin-left:14px;}
-  .lb-close{
-    background:none;border:1px solid var(--line);border-radius:100px;
-    width:40px;height:40px;font-size:18px;cursor:pointer;color:var(--ink);
-    transition:all .2s;
-  }
-  .lb-close:hover{background:#111;color:#fff;border-color:#111;}
-  .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:28px 70px;position:relative;min-height:0;}
-  .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;box-shadow:0 8px 50px rgba(0,0,0,.12);}
-  .lb-nav{
-    position:absolute;top:50%;transform:translateY(-50%);
-    background:none;border:1px solid var(--line);border-radius:100px;
-    width:46px;height:46px;font-size:18px;cursor:pointer;color:var(--gray-1);
-    transition:all .2s;background:#fff;
-  }
-  .lb-nav:hover{background:#111;color:#fff;border-color:#111;}
-  .lb-prev{left:14px;}
-  .lb-next{right:14px;}
-  .lb-bottom{padding:14px 40px 24px;text-align:center;color:var(--gray-1);font-size:13.5px;max-width:760px;margin:0 auto;}
-  @media(max-width:640px){.lb-top,.lb-bottom{padding-left:20px;padding-right:20px;}.lb-stage{padding:20px 56px;}}
+  .lb-top{display:flex;justify-content:space-between;align-items:baseline;padding:16px 28px;border-bottom:1px solid var(--ink);}
+  .lb-title{font-size:13px;font-weight:500;}
+  .lb-count{color:var(--gray);font-size:12px;margin-left:14px;}
+  .lb-close{background:none;border:1px solid var(--ink);width:38px;height:38px;font-size:16px;cursor:pointer;transition:all .2s;}
+  .lb-close:hover{background:var(--ink);color:#fff;}
+  .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 70px;position:relative;min-height:0;}
+  .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--ink);width:44px;height:44px;font-size:16px;cursor:pointer;transition:all .2s;}
+  .lb-nav:hover{background:var(--ink);color:#fff;}
+  .lb-prev{left:16px;}
+  .lb-next{right:16px;}
+  .lb-bottom{padding:12px 28px 22px;text-align:center;color:var(--gray);font-size:12.5px;max-width:780px;margin:0 auto;}
+  @media(max-width:640px){.lb-stage{padding:16px 54px;}.lb-top,.lb-bottom{padding-left:16px;padding-right:16px;}}
 
   /* ---------- about ---------- */
-  .about{background:var(--bg-soft);}
-  .about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:70px;}
-  @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:44px;}}
-  .about-lead{font-size:clamp(20px,2.6vw,26px);line-height:1.55;font-weight:500;}
-  .about-lead span{color:var(--gray-2);}
-  .about-note{margin-top:22px;color:var(--gray-1);font-size:14px;}
-  .timeline{list-style:none;}
-  .timeline li{
-    display:grid;grid-template-columns:130px 1fr;gap:20px;
-    padding:18px 0;border-bottom:1px solid var(--line);
-  }
+  .about-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;font-size:13px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:34px;}}
+  .about-lead{grid-column:1/3;font-size:clamp(17px,2.2vw,24px);line-height:1.5;font-weight:500;}
+  .about-lead .red{color:var(--red);}
+  .about-side p{margin-bottom:12px;color:#333;}
+  .timeline{list-style:none;grid-column:3/5;}
+  @media(max-width:760px){.timeline{grid-column:auto;}}
+  .timeline li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);}
   @media(max-width:560px){.timeline li{grid-template-columns:1fr;gap:2px;}}
-  .tl-year{color:var(--gray-2);font-size:13px;letter-spacing:.05em;}
-  .tl-title{font-weight:600;font-size:15px;}
-  .tl-sub{color:var(--gray-1);font-size:13.5px;margin-top:2px;}
-  .skills{margin-top:44px;}
-  .skills-label,.hobby-label{font-size:12px;letter-spacing:.2em;color:var(--gray-2);margin-bottom:14px;text-transform:uppercase;}
-  .skill-list,.hobby-list{display:flex;flex-wrap:wrap;gap:10px;}
-  .skill-list span,.hobby-list span{
-    border:1px solid var(--gray-3);padding:6px 16px;border-radius:100px;
-    font-size:13px;color:var(--ink);
-  }
-  .hobbies{margin-top:36px;}
+  .tl-year{color:var(--gray);font-size:12px;}
+  .tl-title{font-weight:500;}
+  .tl-sub{color:var(--gray);font-size:12px;}
+  .chip-row{margin-top:26px;display:flex;flex-wrap:wrap;gap:0 22px;}
+  .chip-row span{border-bottom:1px solid var(--ink);padding:0 0 2px;margin-bottom:10px;font-size:12.5px;}
 
   /* ---------- contact ---------- */
-  .contact{padding:110px 0 60px;}
-  .contact-big{
-    font-size:clamp(38px,7vw,84px);line-height:1.1;font-weight:400;letter-spacing:.01em;
-  }
-  .contact-big em{font-style:italic;color:var(--gray-2);}
-  .contact-rows{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--ink);}
-  @media(max-width:640px){.contact-rows{grid-template-columns:1fr;}}
-  .contact-row{
-    display:flex;justify-content:space-between;align-items:baseline;
-    padding:22px 4px;border-bottom:1px solid var(--line);
-  }
-  .contact-row .k{font-size:12px;letter-spacing:.2em;color:var(--gray-2);text-transform:uppercase;}
-  .contact-row .v{font-size:16px;font-weight:500;}
-  .contact-row a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray-3);transition:border-color .2s;}
-  .contact-row a:hover{border-color:#111;}
+  .contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media(max-width:760px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-item{border-top:1px solid var(--ink);padding-top:10px;}
+  .contact-item .k{color:var(--gray);font-size:12px;margin-bottom:6px;display:block;}
+  .contact-item .v{font-size:16px;font-weight:500;border-bottom:1px solid transparent;transition:border-color .2s;}
+  a.contact-link:hover .v{border-bottom-color:var(--ink);}
 
-  footer{
-    padding:30px 0 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-    color:var(--gray-2);font-size:12px;letter-spacing:.08em;
+  /* ---------- footer marquee ---------- */
+  .marquee{
+    margin-top:100px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    overflow:hidden;white-space:nowrap;
+  }
+  .marquee-inner{
+    display:inline-block;padding:18px 0;
+    font-size:clamp(40px,7vw,90px);font-weight:700;line-height:1;letter-spacing:.02em;
+    animation:slide 22s linear infinite;
+  }
+  .marquee-inner span{margin:0 .35em;}
+  .marquee-inner .red{color:var(--red);}
+  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .foot-meta{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:16px 28px 26px;
+    color:var(--gray);font-size:11.5px;letter-spacing:.08em;
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">芮鹅 <span>/ RAY CHOU</span></div>
-    <ul class="nav-links">
-      <li><a href="#works">作品</a></li>
-      <li><a href="#about">关于</a></li>
-      <li><a href="#contact">联系</a></li>
-    </ul>
+<header>
+  <div class="col">
+    <a class="brand" href="#top">RAY</a>
+    <nav>
+      <a href="#works" class="up">Works 作品</a>
+      <a href="#about" class="up">About 关于</a>
+      <a href="#contact" class="up">Contact 联系</a>
+    </nav>
   </div>
-</nav>
-
-<header class="container">
-  <div class="hero-kicker">Portfolio — Graphic Design</div>
-  <h1 class="hero-name serif">Ray Chou<br><em>周芮 · 芮鹅</em></h1>
-  <div class="hero-sub">
-    <span><b>平面设计师</b> / 视觉编辑</span>
-    <span>主视觉 · 活动物料 · 插画 · 公众号交互排版</span>
-    <span>成都 / 重庆</span>
+  <div class="col c2">
+    <a class="brand" href="#top">CHOU</a>
+    <span style="color:var(--gray);font-weight:400;">周芮 · 平面设计师</span>
   </div>
-  <div class="hero-line"></div>
-  <div class="hero-quote">
-    <span>Continuously improve aesthetic ability — aesthetics are more important than skills.</span>
-    <span>还算有趣的一个人 · Fairly Interesting Person</span>
+  <div class="col c3" style="color:var(--gray);font-weight:400;">
+    <span>PORTFOLIO 2022 — 2026</span>
+    <span>主视觉 · 活动物料 · 插画 · 排版</span>
+  </div>
+  <div class="col c4">
+    <span>尽兴开怀</span>
   </div>
 </header>
 
-<section id="works" class="container">
-  <div class="sec-head">
-    <span class="sec-no">01</span>
-    <h2 class="sec-title">精选作品</h2>
+<main id="top">
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="hero-intro">
+      <div class="intro-name">RAY CHOU<br>芮鹅</div>
+      <div></div>
+      <div class="intro-text">
+        is a graphic designer based in Chengdu.<br>
+        She specializes in key visuals, campaign materials, illustrations,
+        interactive WeChat layouts, 3D renders, and more.<br>
+        <div class="intro-red">还算有趣的一个人 Fairly Interesting Person!</div>
+        <div class="intro-contact">
+          <a href="mailto:563301829@qq.com">563301829@qq.com</a> / <a href="tel:18782284212">187 8228 4212</a>
+        </div>
+      </div>
+    </div>
+    <div class="giant">
+      <div class="hanzi">芮鹅</div>
+      <div class="en">GRAPHIC DESIGN — CHENGDU</div>
+    </div>
+    <div class="sticker">平面设计<br>禁止无聊</div>
   </div>
 
-  <div class="filters" id="filters">
-    <button class="active" data-f="all">全部</button>
-    <button data-f="kv">商业空间档期</button>
-    <button data-f="event">活动物料</button>
-    <button data-f="online">线上与排版</button>
-    <button data-f="lab">练习与实验</button>
-  </div>
+  <!-- works -->
+  <section id="works">
+    <div class="sec-row">
+      <h2 class="sec-title up">Works — 精选作品</h2>
+      <span class="sec-no">01</span>
+    </div>
+    <div class="filters" id="filters">
+      <button class="active" data-f="all">全部 All</button>
+      <button data-f="kv">商业空间档期 KV</button>
+      <button data-f="event">活动物料</button>
+      <button data-f="online">线上与排版</button>
+      <button data-f="lab">练习与实验</button>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
 
-  <div class="grid" id="grid"></div>
-</section>
-
-<section id="about" class="about">
-  <div class="container">
-    <div class="sec-head">
+  <!-- about -->
+  <section id="about">
+    <div class="sec-row">
+      <h2 class="sec-title up">About — 关于我</h2>
       <span class="sec-no">02</span>
-      <h2 class="sec-title">关于我</h2>
     </div>
     <div class="about-grid">
-      <div>
-        <p class="about-lead">周芮，平面设计师，常驻成都。<span>从产品造型到视觉传达，从商业空间档期到公众号交互排版——始终相信审美比技巧更重要。</span></p>
-        <p class="about-note">曾在「幸会SALON」以平均每年 200 篇的频率负责公众号整体排版与交互设计；为重庆光环、成都悠方等商业体打造多个档期主视觉与线下打卡场景。</p>
-        <div class="skills">
-          <div class="skills-label">Professional Skill · 专业技能</div>
-          <div class="skill-list">
-            <span>Photoshop</span><span>Illustrator</span><span>After Effects</span>
-            <span>Procreate</span><span>Rhino</span><span>KeyShot</span>
-            <span>秀米交互排版</span><span>微信公众号运营</span>
-          </div>
-        </div>
-        <div class="hobbies">
-          <div class="hobby-label">Passing Hobbies · 及格爱好</div>
-          <div class="hobby-list">
-            <span>电影</span><span>音乐</span><span>综艺</span><span>动漫</span><span>撸猫</span>
-          </div>
+      <div class="about-lead" style="grid-column:1/3;">
+        从产品造型到视觉传达，从商业空间档期到公众号交互排版。<br>
+        <span class="red">始终相信审美比技巧更重要。</span>
+      </div>
+      <div class="about-side">
+        <p>周芮，平面设计师 / 视觉编辑，常驻成都。</p>
+        <p>曾负责「幸会SALON」公众号整体视觉，平均每年 200 篇交互排版；为重庆光环、成都悠方、花园城等商业体打造多个档期主视觉与线下打卡场景。</p>
+        <div class="chip-row">
+          <span>Photoshop</span><span>Illustrator</span><span>After Effects</span>
+          <span>Procreate</span><span>Rhino</span><span>KeyShot</span>
+          <span>秀米交互排版</span><span>公众号运营</span>
+          <span>电影</span><span>音乐</span><span>动漫</span><span>撸猫</span>
         </div>
       </div>
       <ul class="timeline">
-        <li>
-          <span class="tl-year">2020.08 – 2022.05</span>
-          <div><div class="tl-title">成都幸会文化传播有限公司 · 视觉编辑</div>
-          <div class="tl-sub">负责公众号视觉排版、沙龙与发布会活动视觉、线上 H5 与宣传物料</div></div>
-        </li>
-        <li>
-          <span class="tl-year">2018.04 – 2018.06</span>
-          <div><div class="tl-title">康联畅享（北京）医疗科技有限公司 · 建模实习生</div>
-          <div class="tl-sub">产品建模与渲染</div></div>
-        </li>
-        <li>
-          <span class="tl-year">2018 – 2020</span>
-          <div><div class="tl-title">南宁师范大学 · 视觉传达设计</div></div>
-        </li>
-        <li>
-          <span class="tl-year">2015 – 2018</span>
-          <div><div class="tl-title">北海艺术设计学院 · 产品造型设计</div></div>
-        </li>
+        <li><span class="tl-year">2020.08 – 2022.05</span><div><div class="tl-title">成都幸会文化传播 · 视觉编辑</div><div class="tl-sub">公众号视觉 / 沙龙发布会活动 / H5 与物料</div></div></li>
+        <li><span class="tl-year">2018.04 – 2018.06</span><div><div class="tl-title">康联畅享（北京）医疗 · 建模实习生</div><div class="tl-sub">产品建模与渲染</div></div></li>
+        <li><span class="tl-year">2018 – 2020</span><div><div class="tl-title">南宁师范大学 · 视觉传达设计</div></div></li>
+        <li><span class="tl-year">2015 – 2018</span><div><div class="tl-title">北海艺术设计学院 · 产品造型设计</div></div></li>
       </ul>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact" class="contact container">
-  <div class="sec-head">
-    <span class="sec-no">03</span>
-    <h2 class="sec-title">联系我</h2>
-  </div>
-  <p class="contact-big serif">Thank you for your time.<br><em>期待与你合作。</em></p>
-  <div class="contact-rows">
-    <div class="contact-row">
-      <span class="k">Tel · 电话</span>
-      <span class="v"><a href="tel:18782284212">187 8228 4212</a></span>
+  <!-- contact -->
+  <section id="contact">
+    <div class="sec-row">
+      <h2 class="sec-title up">Contact — 联系我</h2>
+      <span class="sec-no">03</span>
     </div>
-    <div class="contact-row">
-      <span class="k">Email · 邮箱</span>
-      <span class="v"><a href="mailto:563301829@qq.com">563301829@qq.com</a></span>
+    <div class="contact-grid">
+      <div class="contact-item"><span class="k">TEL · 电话</span><a class="contact-link" href="tel:18782284212"><span class="v">187 8228 4212</span></a></div>
+      <div class="contact-item"><span class="k">EMAIL · 邮箱</span><a class="contact-link" href="mailto:563301829@qq.com"><span class="v">563301829@qq.com</span></a></div>
+      <div class="contact-item"><span class="k">BASE · 城市</span><span class="v">成都 Chengdu</span></div>
+      <div class="contact-item"><span class="k">STATUS · 状态</span><span class="v" style="color:var(--red);">接新项目与合作</span></div>
     </div>
+  </section>
+
+  <!-- footer marquee -->
+  <div class="marquee">
+    <div class="marquee-inner" id="marquee"></div>
   </div>
-  <footer>
-    <span>© 2026 Ray Chou · 芮鹅</span>
+  <div class="foot-meta">
+    <span>© 2026 RAY CHOU 芮鹅</span>
     <span>PORTFOLIO — GRAPHIC DESIGN</span>
-  </footer>
-</section>
+    <span>CHENGDU, CHINA</span>
+    <span style="color:var(--red);">禁止无聊 · ALL IN FOR FUN</span>
+  </div>
+
+</main>
 
 <!-- lightbox -->
 <div class="lightbox" id="lightbox">
@@ -325,86 +317,86 @@ const works = [
   {
     title:"重庆光环 · 重庆森林", en:"Chongqing Forest", cat:"kv", cover:"assets/forest-final.jpg",
     desc:"以王家卫式梦核感为思路：森林与金鱼装置结合、高饱和度迷幻光感、金鱼在森林中游动。夏日限定展落地沐光森林 O' Garden，用小成本场景感打造线下超强流量打卡点位，含超透卡与线上宣发物料。",
-    tags:["主视觉","线下打卡","线上宣发"], year:"2026 夏日限定展 · 重庆光环",
+    tags:["主视觉","线下打卡","线上宣发"], year:"2026",
     imgs:["assets/forest-final.jpg","assets/cq-forest.jpg","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
-  },
-  {
-    title:"重庆光环 · 2025SS 樱花秀场", en:"Fashion Show", cat:"kv", cover:"assets/cq-sakura.jpg",
-    desc:"秀场氛围感 × 场景樱花元素：粉色樱花林与点状飘动樱花，层峦叠嶂的负形空间中生长出一条秀场道路，光影感契合商业体调性。含线上宣发、线下物料与长图。",
-    tags:["主视觉","秀场","物料延展"], year:"2025SS · 重庆光环购物中心",
-    imgs:["assets/cq-sakura.jpg","assets/cq-sakura-goods.jpg","assets/cq-sakura-long.jpg"]
   },
   {
     title:"重庆光环 · 潮燃跃动运动季", en:"Trendy Sports Season", cat:"kv", cover:"assets/sport-2025.jpg",
     desc:"插画风格潮流运动主视觉：几何线条组合人物，场景与人物相融合，干净利落的线条带来时尚感。涵盖主题大画面、线上宣发与线下物料，联动 lululemon、SALOMON、HOKA 等运动品牌。",
-    tags:["主视觉","插画","品牌联动"], year:"2025 · 重庆光环购物中心",
+    tags:["主视觉","插画","品牌联动"], year:"2025",
     imgs:["assets/sport-2025.jpg","assets/cq-sport.jpg","assets/cq-sport-online.jpg","assets/cq-sport-goods.jpg"]
+  },
+  {
+    title:"光环花园城 · 开业主视觉", en:"Grand Opening", cat:"kv", cover:"assets/garden-open.jpg",
+    desc:"重庆渝北·光环花园城 9.26 闪耀启幕开业主视觉：蒸汽朋克机械花园 3D 渲染，金色机械花与齿轮在真实绿植中生长，诠释「城市自然共同体」的开业主题。",
+    tags:["开业主K","3D 渲染","蒸汽朋克"], year:"2025",
+    imgs:["assets/garden-open.jpg","assets/steampunk.jpg"]
   },
   {
     title:"成都悠方 · 2025 新年「吉时行乐」", en:"Happy New Year", cat:"kv", cover:"assets/newyear-2025.jpg",
     desc:"舞狮元素 × 过年氛围：原创祥云、宝相花纹、金铜器花纹、铜钱、绣球等插画元素体系，构成完整的新年档期视觉，串联吉狮鸿运当头装置、醒狮贺新、花灯初上等系列活动。含线上宣发与线下物料。",
-    tags:["主视觉","插画元素","物料延展"], year:"2025 · 成都悠方",
+    tags:["主视觉","插画元素","物料延展"], year:"2025",
     imgs:["assets/newyear-2025.jpg","assets/cd-newyear.jpg","assets/cd-newyear-elements.jpg","assets/cd-newyear-goods.jpg"]
+  },
+  {
+    title:"成都悠方 · 6 周年庆「6光溢彩」", en:"All In For Fun", cat:"kv", cover:"assets/anniversary.jpg",
+    desc:"悠方 6 周年庆档期主视觉：红金撞色的 3D 立体「6」与礼物盒世界，贯穿 61 儿童节「蒸汽世界」等子档期，营造「6光溢彩 尽兴开怀」的周年氛围。",
+    tags:["周年庆","3D 视觉","档期统筹"], year:"2025",
+    imgs:["assets/anniversary.jpg","assets/steam-world.jpg"]
+  },
+  {
+    title:"重庆光环 · 2025SS 樱花秀场", en:"Fashion Show", cat:"kv", cover:"assets/cq-sakura.jpg",
+    desc:"秀场氛围感 × 场景樱花元素：粉色樱花林与点状飘动樱花，层峦叠嶂的负形空间中生长出一条秀场道路，光影感契合商业体调性。含线上宣发、线下物料与长图。",
+    tags:["主视觉","秀场","物料延展"], year:"2025",
+    imgs:["assets/cq-sakura.jpg","assets/cq-sakura-goods.jpg","assets/cq-sakura-long.jpg"]
+  },
+  {
+    title:"泡泡玛特 DIMOO 主题巴士 · 全国首站", en:"DIMOO World", cat:"kv", cover:"assets/dimoo.jpg",
+    desc:"DIMOO「在你身边」系列主题巴士全国首站落地成都悠方：云端巴士主视觉 + 成都巡游路线地图 + 停靠信息设计，IP 联名活动全案视觉。",
+    tags:["IP 联名","活动视觉","信息设计"], year:"2024",
+    imgs:["assets/dimoo.jpg"]
+  },
+  {
+    title:"成都悠方 · 拥抱面包节", en:"Embrace The Bread Festival", cat:"kv", cover:"assets/bread.jpg",
+    desc:"手绘肌理插画面包 × 麻将「发」的成都式幽默：吐司、甜甜圈与骰子在暖米色画布上翻滚，「Air holes in the brain, child of bread」。",
+    tags:["手绘插画","节庆活动"], year:"2024",
+    imgs:["assets/bread.jpg"]
+  },
+  {
+    title:"超级合粉节 · Butter Dog", en:"Super K-One", cat:"kv", cover:"assets/hefenjie.jpg",
+    desc:"合景悠方会员大促「超级合粉节」主视觉：Butter Dog IP 涂鸦风插画，粉色泡泡世界里的小狗滑板冲浪，节日感与松弛感拉满。",
+    tags:["IP 插画","会员活动"], year:"2024",
+    imgs:["assets/hefenjie.jpg"]
+  },
+  {
+    title:"花园城 · 织光入梦双旦满月季", en:"Dreams Winter", cat:"kv", cover:"assets/dream-winter.jpg",
+    desc:"「织光入梦」双旦档期主视觉：蓝橙交织的经纬线条如织物般穿插，雪花与光带编织冬日梦境，12.05-01.03 双旦满月季。",
+    tags:["档期主视觉","几何构成"], year:"2025",
+    imgs:["assets/dream-winter.jpg"]
+  },
+  {
+    title:"悠方 · Go蕉游 UNIART 艺术季", en:"Go Banana", cat:"kv", cover:"assets/banana.jpg",
+    desc:"UNIART 艺术季「蕉点轻松 摩得蕉绿」：戴墨镜的香蕉悠浮在泳池之上，手写笔刷字体与水面波光构成夏日清凉横幅。",
+    tags:["3D 视觉","艺术季"], year:"2024",
+    imgs:["assets/banana.jpg"]
+  },
+  {
+    title:"花园城 · 自在超有爱", en:"Comfortable Love", cat:"kv", cover:"assets/love-520.jpg",
+    desc:"520 × 母亲节双节点档期「自在超有爱」：柔雾渐变的花影与手写曲线，轻盈浪漫的春日表达。",
+    tags:["档期主视觉","渐变视觉"], year:"2024",
+    imgs:["assets/love-520.jpg"]
+  },
+  {
+    title:"成都悠方 · 端午会员活动", en:"Dragon Boat Festival", cat:"kv", cover:"assets/duanwu.jpg",
+    desc:"「粽享端午 会员有礼」活动海报：清新绿意的粽子插画与三角构成，覆盖龙粽登场、会员香囊等权益信息设计。",
+    tags:["活动海报","信息设计"], year:"2024",
+    imgs:["assets/duanwu.jpg"]
   },
   {
     title:"成都悠方 · 心愿碰杯季", en:"Make A Wish", cat:"kv", cover:"assets/cd-wish.jpg",
     desc:"与 B 站「干杯」结合的跨年档期：以盒子元素搭建商业体建筑，酒杯作为最终亮相。从草稿到成品，并输出完整动画视频脚本与朋友圈宣发物料。",
     tags:["主视觉","视频脚本","朋友圈宣发"], year:"成都悠方",
     imgs:["assets/cd-wish.jpg","assets/cd-wish-draft.jpg","assets/cd-wish-goods.jpg"]
-  },
-  {
-    title:"成都悠方 · 6 周年庆「6光溢彩」", en:"All In For Fun", cat:"kv", cover:"assets/anniversary.jpg",
-    desc:"悠方 6 周年庆档期主视觉：红金撞色的 3D 立体「6」与礼物盒世界，贯穿 61 儿童节「蒸汽世界」等子档期，营造「6光溢彩 尽兴开怀」的周年氛围。",
-    tags:["周年庆","3D 视觉","档期统筹"], year:"2025 · 成都悠方",
-    imgs:["assets/anniversary.jpg","assets/steam-world.jpg"]
-  },
-  {
-    title:"重庆光环花园城 · 开业主视觉", en:"Grand Opening", cat:"kv", cover:"assets/garden-open.jpg",
-    desc:"重庆渝北·光环花园城 9.26 闪耀启幕开业主视觉：蒸汽朋克机械花园 3D 渲染，金色机械花与齿轮在真实绿植中生长，诠释「城市自然共同体」的开业主题。",
-    tags:["开业主K","3D 渲染","蒸汽朋克"], year:"2025.09 · 光环花园城",
-    imgs:["assets/garden-open.jpg","assets/steampunk.jpg"]
-  },
-  {
-    title:"泡泡玛特 DIMOO 主题巴士 · 全国首站", en:"DIMOO World", cat:"kv", cover:"assets/dimoo.jpg",
-    desc:"DIMOO「在你身边」系列主题巴士全国首站落地成都悠方：云端巴士主视觉 + 成都巡游路线地图 + 停靠信息设计，IP 联名活动全案视觉。",
-    tags:["IP 联名","活动视觉","信息设计"], year:"2024.08 · 成都悠方",
-    imgs:["assets/dimoo.jpg"]
-  },
-  {
-    title:"成都悠方 · 拥抱面包节", en:"Embrace The Bread Festival", cat:"kv", cover:"assets/bread.jpg",
-    desc:"手绘肌理插画面包 × 麻将「发」的成都式幽默：吐司、甜甜圈与骰子在暖米色画布上翻滚，「Air holes in the brain, child of bread」。",
-    tags:["手绘插画","节庆活动"], year:"2024.10 · 成都悠方",
-    imgs:["assets/bread.jpg"]
-  },
-  {
-    title:"超级合粉节 · Butter Dog", en:"Super K-One", cat:"kv", cover:"assets/hefenjie.jpg",
-    desc:"合景悠方会员大促「超级合粉节」主视觉：Butter Dog IP 涂鸦风插画，粉色泡泡世界里的小狗滑板冲浪，节日感与松弛感拉满。",
-    tags:["IP 插画","会员活动"], year:"2024.11 · 合景悠方",
-    imgs:["assets/hefenjie.jpg"]
-  },
-  {
-    title:"花园城 · 织光入梦双旦满月季", en:"Dreams Winter", cat:"kv", cover:"assets/dream-winter.jpg",
-    desc:"「织光入梦」双旦档期主视觉：蓝橙交织的经纬线条如织物般穿插，雪花与光带编织冬日梦境，12.05-01.03 双旦满月季。",
-    tags:["档期主视觉","几何构成"], year:"2025-2026 双旦 · 花园城",
-    imgs:["assets/dream-winter.jpg"]
-  },
-  {
-    title:"悠方 · Go蕉游 UNIART 艺术季", en:"Go Banana", cat:"kv", cover:"assets/banana.jpg",
-    desc:"UNIART 艺术季「蕉点轻松 摩得蕉绿」：戴墨镜的香蕉悠浮在泳池之上，手写笔刷字体与水面波光构成夏日清凉横幅。",
-    tags:["3D 视觉","艺术季"], year:"2024.08 · 成都悠方",
-    imgs:["assets/banana.jpg"]
-  },
-  {
-    title:"花园城 · 自在超有爱", en:"Comfortable Love", cat:"kv", cover:"assets/love-520.jpg",
-    desc:"520 × 母亲节双节点档期「自在超有爱」：柔雾渐变的花影与手写曲线，轻盈浪漫的春日表达。",
-    tags:["档期主视觉","渐变视觉"], year:"2024.05 · 花园城",
-    imgs:["assets/love-520.jpg"]
-  },
-  {
-    title:"成都悠方 · 端午会员活动", en:"Dragon Boat Festival", cat:"kv", cover:"assets/duanwu.jpg",
-    desc:"「粽享端午 会员有礼」活动海报：清新绿意的粽子插画与三角构成，覆盖龙粽登场、会员香囊等权益信息设计。",
-    tags:["活动海报","信息设计"], year:"2024.06 · 成都悠方",
-    imgs:["assets/duanwu.jpg"]
   },
   {
     title:"幸会SALON · 公众号排版", en:"Official Account Layout", cat:"online", cover:"assets/wechat-1.jpg",
@@ -415,55 +407,55 @@ const works = [
   {
     title:"幸会SALON · 年度盛会发布会", en:"Press Conference", cat:"event", cover:"assets/salon-gala.jpg",
     desc:"年度盛会发布会视觉：主要负责视频输出、辅助物料与线上排版，团队完成。",
-    tags:["发布会","视频输出"], year:"2021.08 · 团队项目",
+    tags:["发布会","视频输出"], year:"2021",
     imgs:["assets/salon-gala.jpg"]
   },
   {
     title:"幸会SALON · 沙龙活动 VOL.6", en:"Salon Activities", cat:"event", cover:"assets/salon-vol6.jpg",
     desc:"「在大牌和借鉴之外，探讨时尚的更多可能性。」沙龙活动视觉，个人完成。",
-    tags:["沙龙活动","时尚"], year:"2022.04 · 个人完成",
+    tags:["沙龙活动","时尚"], year:"2022",
     imgs:["assets/salon-vol6.jpg"]
   },
   {
     title:"in99 · H5 线上活动", en:"Online Activities", cat:"online", cover:"assets/in99.jpg",
     desc:"根据客户主视觉进行延展设计的线上 H5 活动，个人完成。",
-    tags:["H5","线上活动"], year:"2021.08 · 个人完成",
+    tags:["H5","线上活动"], year:"2021",
     imgs:["assets/in99.jpg"]
   },
   {
     title:"水林间寿喜烧自助 · 活动物料", en:"Active Material", cat:"event", cover:"assets/shuilinjian.jpg",
     desc:"餐饮品牌活动物料设计，个人完成。",
-    tags:["活动物料","餐饮"], year:"2021.10 · 个人完成",
+    tags:["活动物料","餐饮"], year:"2021",
     imgs:["assets/shuilinjian.jpg"]
   },
   {
     title:"吃成都 · 青花椒火锅鱼 活动物料", en:"Active Material", cat:"event", cover:"assets/chichengdu.jpg",
     desc:"「吃成都·青花椒火锅鱼」活动展品物料设计，团队完成。",
-    tags:["活动物料","餐饮"], year:"2021.07 · 团队完成",
+    tags:["活动物料","餐饮"], year:"2021",
     imgs:["assets/chichengdu.jpg"]
   },
   {
     title:"我为熊猫种棵竹 · 公益活动", en:"Public Welfare", cat:"event", cover:"assets/panda.jpg",
     desc:"「我为熊猫种棵竹」公益活动的视觉物料设计，个人完成。",
-    tags:["公益","活动物料"], year:"2021.07 · 个人完成",
+    tags:["公益","活动物料"], year:"2021",
     imgs:["assets/panda.jpg"]
   },
   {
     title:"RAM Highlights · 海报延展练习", en:"Work Practice", cat:"lab", cover:"assets/ram.jpg",
     desc:"以 RAM Highlights 2022「The Good Life 美好生活」为原型的多种形式海报延展练习，个人练习。",
-    tags:["海报","延展练习"], year:"2022.10",
+    tags:["海报","延展练习"], year:"2022",
     imgs:["assets/ram.jpg"]
   },
   {
     title:"上海国际艺术展 · 作品练习", en:"Work Practice", cat:"lab", cover:"assets/art-expo.jpg",
     desc:"以上海国际艺术展为原型的视觉练习，持续打磨审美——审美比技巧更重要。",
-    tags:["展览视觉","练习"], year:"2022.09",
+    tags:["展览视觉","练习"], year:"2022",
     imgs:["assets/art-expo.jpg"]
   },
   {
     title:"产品设计 · 毕业前作业", en:"Product Design", cat:"lab", cover:"assets/product-design.jpg",
     desc:"产品造型设计阶段的作品，从造型到渲染的完整表达。",
-    tags:["产品设计","渲染"], year:"2017.04",
+    tags:["产品设计","渲染"], year:"2017",
     imgs:["assets/product-design.jpg"]
   },
   {
@@ -474,17 +466,15 @@ const works = [
   }
 ];
 
+/* render grid */
 const grid = document.getElementById("grid");
 works.forEach((w,i)=>{
   const el = document.createElement("article");
   el.className = "card"; el.dataset.cat = w.cat;
   el.innerHTML = `
-    <div class="card-cover"><img src="${w.cover}" alt="${w.title}" loading="lazy"></div>
-    <div class="card-meta">
-      <div><div class="card-title">${w.title}</div><div class="card-desc">${w.desc.split("。")[0]}。</div></div>
-      <div class="card-en">${w.en}</div>
-    </div>
-    <div class="card-tags">${w.tags.map(t=>`<span class="tag">${t}</span>`).join("")}<span class="tag">${w.year}</span></div>`;
+    <img src="${w.cover}" alt="${w.title}" loading="lazy">
+    <div class="card-cap"><span class="t">${w.title}</span><span class="y">${w.year}</span></div>
+    <div class="card-en">${w.en}</div>`;
   el.addEventListener("click",()=>openLb(i));
   grid.appendChild(el);
 });
@@ -499,6 +489,11 @@ document.getElementById("filters").addEventListener("click",e=>{
   });
 });
 
+/* marquee */
+const mq = document.getElementById("marquee");
+const seg = `<span>芮鹅</span><span class="red">RAY CHOU</span><span>平面设计</span><span>禁止无聊</span><span class="red">尽兴开怀</span>`;
+mq.innerHTML = seg.repeat(6);
+
 /* lightbox */
 let cur = 0, idx = 0;
 const lb = document.getElementById("lightbox");
@@ -509,7 +504,7 @@ function render(){
   document.getElementById("lbImg").src = w.imgs[idx];
   document.getElementById("lbTitle").textContent = w.title;
   document.getElementById("lbCount").textContent = `${idx+1} / ${w.imgs.length}`;
-  document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.year}`;
+  document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.tags.join(" / ")}`;
   const single = w.imgs.length<2;
   document.getElementById("lbPrev").style.display = single?"none":"";
   document.getElementById("lbNext").style.display = single?"none":"";
@@ -525,11 +520,14 @@ document.addEventListener("keydown",e=>{
   if(e.key==="ArrowRight") document.getElementById("lbNext").click();
 });
 
-/* scroll reveal */
-const io = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{ if(en.isIntersecting){ en.target.style.animationDelay="0"; en.target.style.opacity="1"; io.unobserve(en.target);} });
-},{threshold:.1});
-document.querySelectorAll(".card").forEach((c,i)=>{ c.style.animationDelay=`${(i%6)*70}ms`; io.observe(c); });
+/* nav active state */
+const navLinks = document.querySelectorAll("header nav a");
+const secs = ["works","about","contact"].map(id=>document.getElementById(id));
+window.addEventListener("scroll",()=>{
+  let curId = "";
+  secs.forEach(s=>{ if(s && s.getBoundingClientRect().top < window.innerHeight*0.4) curId = s.id; });
+  navLinks.forEach(a=>a.classList.toggle("on", a.getAttribute("href")===`#${curId}`));
+},{passive:true});
 </script>
 </body>
 </html>
