@@ -280,16 +280,16 @@
 <script>
 const works = [
   {
-    title:"重庆光环 · 重庆森林", en:"Chongqing Forest", cat:"kv", cover:"assets/cq-forest.jpg",
+    title:"重庆光环 · 重庆森林", en:"Chongqing Forest", cat:"kv", cover:"assets/forest-wide.jpg", slide:"assets/cq-forest.jpg",
     desc:"以王家卫式梦核感为思路：森林与金鱼装置结合、高饱和度迷幻光感、金鱼在森林中游动。夏日限定展落地沐光森林 O' Garden，用小成本场景感打造线下超强流量打卡点位，含超透卡与线上宣发物料。",
     tags:["主视觉","线下打卡","线上宣发"], year:"2026",
-    imgs:["assets/forest-final.jpg","assets/cq-forest.jpg","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
+    imgs:["assets/forest-final.jpg","assets/cq-forest-spot.jpg","assets/cq-forest-online.jpg"]
   },
   {
-    title:"重庆光环 · 潮燃跃动运动季", en:"Trendy Sports Season", cat:"kv", cover:"assets/sport-2025.jpg",
+    title:"重庆光环 · 潮燃跃动运动季", en:"Trendy Sports Season", cat:"kv", cover:"assets/sport-2025.jpg", slide:"assets/cq-sport.jpg",
     desc:"插画风格潮流运动主视觉：几何线条组合人物，场景与人物相融合，干净利落的线条带来时尚感。涵盖主题大画面、线上宣发与线下物料，联动 lululemon、SALOMON、HOKA 等运动品牌。",
     tags:["主视觉","插画","品牌联动"], year:"2025",
-    imgs:["assets/sport-2025.jpg","assets/cq-sport.jpg","assets/cq-sport-online.jpg","assets/cq-sport-goods.jpg"]
+    imgs:["assets/sport-2025.jpg","assets/cq-sport-online.jpg","assets/cq-sport-goods.jpg"]
   },
   {
     title:"光环花园城 · 开业主视觉", en:"Grand Opening", cat:"kv", cover:"assets/garden-open.jpg",
@@ -298,10 +298,10 @@ const works = [
     imgs:["assets/garden-open.jpg","assets/steampunk.jpg"]
   },
   {
-    title:"成都悠方 · 2025 新年「吉时行乐」", en:"Happy New Year", cat:"kv", cover:"assets/cd-newyear.jpg",
+    title:"成都悠方 · 2025 新年「吉时行乐」", en:"Happy New Year", cat:"kv", cover:"assets/newyear-wide.jpg", slide:"assets/cd-newyear.jpg",
     desc:"舞狮元素 × 过年氛围：原创祥云、宝相花纹、金铜器花纹、铜钱、绣球等插画元素体系，构成完整的新年档期视觉，串联吉狮鸿运当头装置、醒狮贺新、花灯初上等系列活动。含线上宣发与线下物料。",
     tags:["主视觉","插画元素","物料延展"], year:"2025",
-    imgs:["assets/newyear-2025.jpg","assets/cd-newyear.jpg","assets/cd-newyear-elements.jpg","assets/cd-newyear-goods.jpg"]
+    imgs:["assets/newyear-2025.jpg","assets/cd-newyear-elements.jpg","assets/cd-newyear-goods.jpg"]
   },
   {
     title:"成都悠方 · 6 周年庆「6光溢彩」", en:"All In For Fun", cat:"kv", cover:"assets/anniversary.jpg",
@@ -310,10 +310,10 @@ const works = [
     imgs:["assets/anniversary.jpg","assets/steam-world.jpg"]
   },
   {
-    title:"重庆光环 · 2025SS 樱花秀场", en:"Fashion Show", cat:"kv", cover:"assets/cq-sakura.jpg",
+    title:"重庆光环 · 2025SS 樱花秀场", en:"Fashion Show", cat:"kv", cover:"assets/sakura-kv.jpg", slide:"assets/cq-sakura.jpg",
     desc:"秀场氛围感 × 场景樱花元素：粉色樱花林与点状飘动樱花，层峦叠嶂的负形空间中生长出一条秀场道路，光影感契合商业体调性。含线上宣发、线下物料与长图。",
     tags:["主视觉","秀场","物料延展"], year:"2025",
-    imgs:["assets/cq-sakura.jpg","assets/cq-sakura-goods.jpg","assets/cq-sakura-long.jpg"]
+    imgs:["assets/cq-sakura-goods.jpg","assets/cq-sakura-long.jpg"]
   },
   {
     title:"泡泡玛特 DIMOO 主题巴士 · 全国首站", en:"DIMOO World", cat:"kv", cover:"assets/dimoo-wide.jpg",
@@ -467,14 +467,20 @@ function render(){
   document.getElementById("lbTitle").textContent = w.title;
   document.getElementById("lbCount").textContent = `${idx+1} / ${total}`;
   if(idx===0){
-    intro.style.display = "flex"; img.style.display = "none";
-    const big = w.en.split(" ").filter(Boolean).join("<br>");
-    intro.innerHTML =
-      `<div class="head"><span>${w.title}</span><span class="cat">PROJECT · 介绍</span></div>` +
-      `<div class="big">${big}</div>` +
-      `<div class="cn">${w.tags.map(t=>`<span>${t}</span>`).join("")}</div>` +
-      `<div class="foot"><span class="yr"># ${w.year}</span><span class="sig">RAY CHOU</span></div>`;
-    document.getElementById("lbDesc").textContent = w.desc;
+    if(w.slide){
+      intro.style.display = "none"; img.style.display = "";
+      img.src = w.slide;
+      document.getElementById("lbDesc").textContent = w.desc;
+    }else{
+      intro.style.display = "flex"; img.style.display = "none";
+      const big = w.en.split(" ").filter(Boolean).join("<br>");
+      intro.innerHTML =
+        `<div class="head"><span>${w.title}</span><span class="cat">PLACEHOLDER · 待更新</span></div>` +
+        `<div class="big">${big}</div>` +
+        `<div class="cn">${w.tags.map(t=>`<span>${t}</span>`).join("")}</div>` +
+        `<div class="foot"><span class="yr"># ${w.year}</span><span class="sig">RAY CHOU</span></div>`;
+      document.getElementById("lbDesc").textContent = w.desc;
+    }
   }else{
     intro.style.display = "none"; img.style.display = "";
     img.src = w.imgs[idx-1];
