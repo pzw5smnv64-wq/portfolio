@@ -137,6 +137,9 @@
   .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;padding:22px 72px;position:relative;min-height:0;}
   .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:var(--shadow);}
   .lb-stage video{max-width:100%;max-height:100%;border-radius:10px;box-shadow:var(--shadow);background:#000;}
+  .lb-row{display:flex;gap:10px;height:min(74vh,660px);width:100%;max-width:100%;align-items:center;}
+  .lb-row img{height:100%;width:0;flex:1 1 0;min-width:0;object-fit:cover;border-radius:10px;box-shadow:var(--shadow);cursor:pointer;transition:flex .5s cubic-bezier(.6,0,.3,1);}
+  .lb-row img.main{flex:2.6 1 0;}
   .lb-nav{position:absolute;top:50%;transform:translateY(-50%);background:var(--paper);border:1.5px solid var(--ink);border-radius:100px;width:46px;height:46px;font-size:16px;cursor:pointer;transition:all .2s;}
   .lb-nav:hover{background:var(--ink);color:var(--cream);}
   .lb-prev{left:16px;}
@@ -282,6 +285,7 @@
     <div class="lb-intro" id="lbIntro"></div>
     <img id="lbImg" src="" alt="">
     <video id="lbVid" src="" controls playsinline loop style="display:none"></video>
+    <div id="lbRow" class="lb-row" style="display:none"></div>
     <button class="lb-nav lb-next" id="lbNext" aria-label="下一张">→</button>
   </div>
   <div class="lb-bottom" id="lbDesc"></div>
@@ -306,7 +310,7 @@ const works = [
     kvset:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg"],
     desc:"大悦城西南商业（成都/重庆/武汉）年度视觉提案并成功中标：以「JOY IN LIVE 生动即生活」为总纲，四款人群主视觉并排成阵——PARK 在公园里自在漫游、PET 在奔跑中活出宠趣、SPORT 在律动中活出生动、KIDS 在陪伴里悦享时光；真人摄影 × 手写笔刷字体 × 3D 蘑菇装置，延展上新季册页、高德地图联名海报、道旗与户外海报系统。",
     tags:["年度视觉","提案中标","人群主视觉","延展系统"], year:"2026 · 成都/重庆/武汉",
-    imgs:["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg","assets/swjoy-main.jpg","assets/swjoy-annual.mp4","assets/swjoy-new.jpg","assets/swjoy-amap.jpg","assets/swjoy-flag.jpg","assets/swjoy-poster.jpg"]
+    imgs:[["assets/swjoy-kv1.jpg","assets/swjoy-kv2.jpg","assets/swjoy-kv3.jpg","assets/swjoy-kv4.jpg"],"assets/swjoy-main.jpg","assets/swjoy-annual.mp4","assets/swjoy-new.jpg","assets/swjoy-amap.jpg","assets/swjoy-flag.jpg","assets/swjoy-poster.jpg"]
   },
   {
     title:"高新花园城 · 年度视觉「近享自在」", en:"ENJOYMENT", cat:"kv", cover:"assets/gxn-white.jpg",
@@ -478,10 +482,10 @@ document.getElementById("filters").addEventListener("click",e=>{
 });
 
 /* lightbox */
-let cur = 0, idx = 0;
+let cur = 0, idx = 0, lbKvi = 0;
 const lb = document.getElementById("lightbox");
-function openLb(i){ cur=i; idx=0; render(); lb.classList.add("open"); document.body.style.overflow="hidden"; }
-function closeLb(){ const v=document.getElementById("lbVid"); v.pause(); lb.classList.remove("open"); document.body.style.overflow=""; }
+function openLb(i){ cur=i; idx=0; lbKvi=0; render(); lb.classList.add("open"); document.body.style.overflow="hidden"; }
+function closeLb(){ const v=document.getElementById("lbVid"); v.pause(); document.getElementById("lbRow").style.display="none"; lb.classList.remove("open"); document.body.style.overflow=""; }
 function setMedia(src){
   const img = document.getElementById("lbImg");
   const vid = document.getElementById("lbVid");
@@ -510,6 +514,7 @@ function render(){
       document.getElementById("lbImg").style.display = "none";
       document.getElementById("lbVid").style.display = "none";
       document.getElementById("lbVid").pause();
+      document.getElementById("lbRow").style.display = "none";
       const big = w.en.split(" ").filter(Boolean).join("<br>");
       intro.innerHTML =
         `<div class="head"><span>${w.title}</span><span class="cat">PLACEHOLDER · 待更新</span></div>` +
@@ -519,8 +524,24 @@ function render(){
       document.getElementById("lbDesc").textContent = w.desc;
     }
   }else{
-    intro.style.display = "none"; setMedia(w.imgs[idx-1]);
-    document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.tags.join(" / ")}`;
+    const item = w.imgs[idx-1];
+    intro.style.display = "none";
+    if(Array.isArray(item)){
+      /* 四联主视觉并排页：点击海报切换主打 */
+      document.getElementById("lbImg").style.display = "none";
+      const v = document.getElementById("lbVid"); v.pause(); v.removeAttribute("src"); v.style.display = "none";
+      const row = document.getElementById("lbRow");
+      row.style.display = "flex";
+      row.innerHTML = item.map((s,i)=>`<img src="${s}" class="${i===lbKvi?"main":""}" data-i="${i}" alt="">`).join("");
+      row.querySelectorAll("img").forEach(el=>el.addEventListener("click",e=>{
+        e.stopPropagation(); lbKvi = +el.dataset.i; render();
+      }));
+      document.getElementById("lbDesc").textContent = `${w.tags.join(" / ")}  ·  四款人群主视觉并排，点击海报切换主打`;
+    }else{
+      document.getElementById("lbRow").style.display = "none";
+      setMedia(item);
+      document.getElementById("lbDesc").textContent = `${w.desc}  ·  ${w.tags.join(" / ")}`;
+    }
   }
   const single = total<2;
   document.getElementById("lbPrev").style.display = single?"none":"";
